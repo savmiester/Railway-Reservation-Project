@@ -1,0 +1,2199 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\froman\fcharset0 Times New Roman;}{\f1\fswiss\fcharset0 Arial;}}
+{\*\generator Msftedit 5.41.21.2508;}\viewkind4\uc1\pard\sb100\sa100\f0\fs24 This code is designed to maintain the result record of students (in schools and college).\line This code will work well on '50 Line' settings.\line\par
+\pard\f1\fs20\par
+\par
+\par
+\par
+/*          WELCOME TO THE PROJECT 'RESULT MANAGEMENT'\par
+\tab\tab\tab MADE BY SUANSH SINGHAL\par
+\tab\tab      OF CLASS XII D OF D.L.D.A.V.\par
+\tab\tab        N.D BLOCK, PITAMPURA                     */\par
+\par
+\par
+\par
+   // INCLUDING ALL THE HEADER FILES  //\par
+#include<conio.h>\par
+#include<process.h>\par
+#include<fstream.h>\par
+#include<string.h>\par
+#include<stdio.h>\par
+#include<dos.h>\par
+\par
+   // CLASS NAMED 'STUDENT' TO CALCULATE GRADE,TOTAL AND PERCANTAGE //\par
+class student\par
+\{\par
+\tab private:\par
+\par
+\tab public:\par
+\tab char grade(long int x,int y);\par
+\tab long int total(int a,int b,int c,int d,int e);\par
+\tab float percent(long int z);\par
+\};\par
+\tab char student::grade(long int x,int y)\par
+\tab\{              // FUNCTION TO CALCULATE GRADE //\par
+\tab\tab if((x*100/y)>74)\par
+\tab\tab return('A');\par
+\tab\tab else\par
+\tab\tab\{\par
+\tab\tab\tab if((x*100/y)>60)\par
+\tab\tab\tab return('B');\par
+\tab\tab\tab else\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab if((x*100/y)>33)\par
+\tab\tab\tab\tab return('C');\par
+\tab\tab\tab\tab else\par
+\tab\tab\tab\tab return('E');\par
+\tab\tab\tab\}\par
+\tab\tab\}\par
+\tab  \}\par
+\par
+\tab  long int student::total(int a,int b,int c,int d,int e)\par
+\tab  \{                     // FUNCTION TO CALCULATE TOTAL MARKS //\par
+\tab\tab int t;\par
+\tab\tab t=(a+b+c+d+e);\par
+\tab\tab return (t);\par
+\tab  \}\par
+\par
+\tab  float student::percent(long int z)\par
+\tab  \{                     // FUNCTION TO CALCULATE PERCANTAGE //\par
+\tab\tab float p=0;\par
+\tab\tab p=(z*100)/410;\par
+\tab\tab return(p);\par
+\tab  \}\par
+\par
+\tab\tab\tab       // STRUCTURE TO INPUT DETAILS OF STUDENT //\par
+struct studres\par
+\{\par
+\par
+\tab int clas;\par
+\tab char s;\par
+\tab int rollno;\par
+\tab char name[30];\par
+\tab char fatername[30];\par
+\tab char teachname[30];\par
+\tab int engmark;\par
+\tab int matmark;\par
+\tab int phymark;\par
+\tab int chemark;\par
+\tab int commark;\par
+\tab int total;\par
+\tab float percentage;\par
+\par
+\}stdres;\par
+\par
+struct temp\par
+\{\par
+\tab int roll;\par
+\tab char name[30];\par
+\tab int clas;\par
+\tab char sec;\par
+\tab int total;\par
+\par
+\}temp;\par
+\par
+    // ALL THE FUNCTIONS INITIALIZED //\par
+void create();\par
+void add();\par
+void search();\par
+void modify();\par
+void merit();\par
+void merit1();\par
+void delet();\par
+char grade(long int x,int y);\par
+long int total(int a,int b,int c,int d,int e);\par
+float percent(long int z);\par
+int checking(int z, char y, int x);\par
+void menu();\par
+\par
+void main()\par
+  \{            //  MAIN PROGRAM STARTS HERE //\par
+     clrscr();\par
+      gotoxy(20,6);\par
+      cout<<" R E S U L T    M A N A G E M E N T";\par
+\par
+      gotoxy(10,10);\par
+      cout<<"   By Suansh Singhal of class XII D";\par
+\par
+\tab  getch();\par
+      clrscr();\par
+\tab menu();         // CALLING FUNCTION TO PRINT MENU //\par
+\par
+\}\par
+\par
+void create()\par
+\par
+  \{                     // FUNCTION TO CREATE THE MAIN FILE //\par
+\tab clrscr();\par
+\tab   char ans;\par
+\tab   fstream result;\par
+      gotoxy(20,6);\par
+      cout<<"WARNING !!! ALL PREVIOUS RECORDS WILL BE DELETED";\par
+      gotoxy(10,10);\par
+      cout<<"                 DO YOU STILL WANT TO CONTINUE(Y/N):";\par
+      cin>>ans;\par
+\tab   if(ans != 'N' || ans != 'n')\par
+\tab      \{\par
+\tab        result.open("result.dat",ios::out|ios::binary);\par
+\tab        result.close();\par
+\tab      \}\par
+       menu();\par
+   \}\par
+\par
+void add()\par
+\par
+   \{               // FUNCTION TO ADD DETAILS OF THE STUDENT //\par
+\tab top:\par
+\tab clrscr();\par
+\tab int max1=100,max2=70,kar,l,m;\par
+\tab char ch,n;\par
+\tab cout<<"CLASS:";\par
+\tab gotoxy (16,1);\par
+\tab cout<<"SECTION:";\par
+\tab gotoxy(31,1);\par
+\tab cout<<"ROLL NO:";\par
+\tab gotoxy(47,1);\par
+\tab cout<<"STUDENT'S NAME:";\par
+\tab gotoxy(1,5);\par
+\tab cout<<"FATHER NAME:";\par
+\tab gotoxy(45,5);\par
+\tab cout<<"CLASS TEACHER:";\par
+\tab gotoxy(1,9);\par
+\tab cout<<"S.NO.";\par
+\tab gotoxy(15,9);\par
+\tab cout<<"SUBJECT";\par
+\tab gotoxy(30,9);\par
+\tab cout<<"MARKS";\par
+\tab gotoxy(40,9);\par
+\tab cout<<"MAXIMUM MARKS";\par
+\tab gotoxy(70,9);\par
+\tab cout<<"GRADE";\par
+\tab gotoxy(3,11);\par
+\tab cout<<"1";\par
+\tab gotoxy(15,11);\par
+\tab cout<<"ENGLISH";\par
+\tab gotoxy(3,13);\par
+\tab cout<<"2";\par
+\tab gotoxy(15,13);\par
+\tab cout<<"MATHS";\par
+\tab gotoxy(3,15);\par
+\tab cout<<"3";\par
+\tab gotoxy(15,15);\par
+\tab cout<<"PHYSICS";\par
+\tab gotoxy(3,17);\par
+\tab cout<<"4";\par
+\tab gotoxy(15,17);\par
+\tab cout<<"CHEMISTRY";\par
+\tab gotoxy(3,19);\par
+\tab cout<<"5";\par
+\tab gotoxy(15,19);\par
+\tab cout<<"COMPUTER";\par
+\tab gotoxy(3,25);\par
+\tab cout<<"6";\par
+\tab gotoxy(15,25);\par
+\tab cout<<"TOTAL";\par
+\tab gotoxy(3,27);\par
+\tab cout<<"7";\par
+\tab gotoxy(15,27);\par
+\tab cout<<"PERCENTAGE";\par
+\tab\tab\tab\tab  // getting student information //\par
+\tab gotoxy(8,1);\par
+\tab cin>>m;\par
+\tab gotoxy(25,1);\par
+\tab n=getchar();\par
+\tab fflush(stdin);\par
+\par
+\tab fstream result;\par
+\tab result.open("result.dat",ios::app|ios::binary);\par
+\tab gotoxy(40,1);\par
+\tab cin>>l;\par
+\tab kar=checking(m,n,l);\par
+\tab if(kar==1)\par
+\tab\{\par
+\tab\tab result.close();\par
+\tab\tab goto top;\par
+\tab\}\par
+\tab else\par
+\tab\{\par
+\tab\tab stdres.clas=m;\par
+\tab\tab stdres.s=n;\par
+\tab\tab stdres.rollno=l;\par
+\tab\}\par
+\par
+\tab gotoxy(63,1);\par
+\tab gets(stdres.name);\par
+\tab fflush(stdin);\par
+\par
+\tab gotoxy(14,5);\par
+\tab gets(stdres.fatername);\par
+\tab fflush(stdin);\par
+\tab gotoxy(60,5);\par
+\tab gets(stdres.teachname);\par
+\par
+\tab gotoxy(47,11);                               /*marks table*/\par
+\tab cout<<"100";\par
+\tab gotoxy(32,11);\par
+\tab cin>>stdres.engmark;\par
+\tab gotoxy(72,11);\par
+\tab cout<<grade(stdres.engmark,max1);\par
+\par
+\tab gotoxy(47,13);\par
+\tab cout<<"100";\par
+\tab gotoxy(32,13);\par
+\tab cin>>stdres.matmark;\par
+\tab gotoxy(72,13);\par
+\tab cout<<grade(stdres.matmark,max1);\par
+\par
+\tab gotoxy(47,15);\par
+\tab cout<<" 70";\par
+\tab gotoxy(32,15);\par
+\tab cin>>stdres.phymark;\par
+\tab gotoxy(72,15);\par
+\tab cout<<grade(stdres.phymark,max2);\par
+\par
+\tab gotoxy(47,17);\par
+\tab cout<<" 70";\par
+\tab gotoxy(32,17);\par
+\tab cin>>stdres.chemark;\par
+\tab gotoxy(72,17);\par
+\tab cout<<grade(stdres.chemark,max2);\par
+\par
+\tab gotoxy(47,19);\par
+\tab cout<<" 70";\par
+\tab gotoxy(32,19);\par
+\tab cin>>stdres.commark;\par
+\tab gotoxy(72,19);\par
+\tab cout<<grade(stdres.commark,max2);\par
+\par
+\tab gotoxy(47,25);\par
+\tab cout<<"410";\par
+\tab gotoxy(31,25);\par
+\par
+cout<<total(stdres.engmark,stdres.matmark,stdres.phymark,stdres.chemark,st\par
+dres.commark);\par
+\par
+stdres.total=total(stdres.engmark,stdres.matmark,stdres.phymark,stdres.che\par
+mark,stdres.commark);\par
+\par
+\tab gotoxy(32,27);\par
+\tab stdres.percentage=percent(stdres.total);\par
+\tab cout<<stdres.percentage;\par
+\tab gotoxy(80,50);\par
+\par
+\par
+\tab result.write((char*)&stdres,sizeof(stdres));\par
+\tab result.close();\par
+\tab getch();\par
+\tab menu();\par
+\}\par
+\par
+char grade(long int x,int y)\par
+\tab\{           // FUNCTION THAT CALCULATES GRADE OF THE STUDENT //\par
+\tab\tab if((x*100/y)>74)\par
+\tab\tab return('A');\par
+\tab\tab else\par
+\tab\tab\{\par
+\tab\tab\tab if((x*100/y)>60)\par
+\tab\tab\tab return('B');\par
+\tab\tab\tab else\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab if((x*100/y)>33)\par
+\tab\tab\tab\tab return('C');\par
+\tab\tab\tab\tab else\par
+\tab\tab\tab\tab return('E');\par
+\tab\tab\tab\}\par
+\tab\tab\}\par
+\tab  \}\par
+\par
+long int total(int a,int b,int c,int d,int e)\par
+\tab  \{          // FUNCTION TO CALCULATE TOTAL OF STUDENT //\par
+\tab\tab int t;\par
+\tab\tab t=(a+b+c+d+e);\par
+\tab\tab return (t);\par
+\tab  \}\par
+\par
+float percent(long int z)\par
+\tab  \{\par
+\tab\tab float p=0;\par
+\tab\tab p=(z*100)/410;\par
+\tab\tab return(p);\par
+\tab  \}\par
+\par
+int checking(int z, char y, int x)\par
+\tab  \{              // FUNCTION TO CALCULATE WETHER STUDENT EXISTS //\par
+\tab\tab int suansh=0;\par
+\tab\tab fstream result;\par
+\tab\tab result.open("result.dat",ios::in|ios::binary);\par
+\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\tab\tab while(result)\par
+\tab\tab\{\par
+\tab\tab\tab if(stdres.clas==z&&stdres.s==y&&stdres.rollno==x)\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab clrscr();\par
+\tab\tab\tab\tab gotoxy(22,25);\par
+\tab\tab\tab\tab cout<<"ENTRY ALREADY EXISTS";\par
+\tab\tab\tab\tab getch();\par
+\tab\tab\tab\tab suansh=1;\par
+\tab\tab\tab\tab break;\par
+\tab\tab\tab\}\par
+\tab\tab\tab result.read((char*)&stdres, sizeof(stdres));\par
+\tab\tab\}\par
+\tab\tab return(suansh);\par
+\tab\}\par
+\par
+\par
+void menu()\par
+\tab\tab   // FUNCTION THAT PRINTS THE MAIN MENU //\par
+ \{\par
+       clrscr();\par
+\tab int ans;\par
+      gotoxy(25,10);\par
+      cout<<"M A I N   M E N U";\par
+      gotoxy(17,15);\par
+      cout<<"1. Create the Primary Result Register";\par
+      gotoxy(17,16);\par
+      cout<<"2. Add Result";\par
+      gotoxy(17,17);\par
+      cout<<"3. Modify Result";\par
+      gotoxy(17,18);\par
+      cout<<"4. Search Result";\par
+      gotoxy(17,19);\par
+      cout<<"5. Delete Result";\par
+      gotoxy(17,20);\par
+      cout<<"6. Generate Merit List Grade wise per subject";\par
+      gotoxy(17,21);\par
+      cout<<"7. Generate Merit List on basis of Total Marks";\par
+      gotoxy(17,22);\par
+      cout<<"8. Exit";\par
+\par
+\tab gotoxy(40,25);\par
+       cout<<"Enter Option(1-8):";\par
+      cin>>ans;\par
+\tab\tab   // SWITCH USED TO MAKE PROGRAM MENU BASED //\par
+\tab      switch(ans)\par
+\tab\tab\{\par
+\tab\tab    case 1:create();\par
+\tab\tab\tab    break;\par
+\tab\tab    case 2: add();\par
+\tab\tab\tab     break;\par
+\tab\tab    case 3: modify();\par
+\tab\tab\tab     break;\par
+\tab\tab    case 4: search();\par
+\tab\tab\tab     break;\par
+\tab\tab    case 5: delet();\par
+\tab\tab\tab     break;\par
+\tab\tab    case 6: merit();\par
+\tab\tab\tab     break;\par
+\tab\tab    case 7: merit1();\par
+\tab\tab\tab     break;\par
+\tab\tab    case 8: exit(0);\par
+\tab\tab\}\par
+\par
+\par
+\}\par
+\par
+void search()\par
+\par
+ \{           // FUNCTION TO SEARCH A STUDENT //\par
+    \{\par
+\tab clrscr();\par
+\tab int max1=100,max2=70,roll,flag=0;\par
+\tab char ch;\par
+\tab gotoxy(23,15);\par
+\tab cout<<"Enter the Roll No. of the student: ";\par
+\tab cin>>roll;\par
+\tab fstream result;\par
+\tab result.open("result.dat",ios::in|ios::binary);\par
+\tab result.read((char*)&stdres,sizeof(stdres));\par
+\tab while(result)\par
+\tab\{\par
+\tab\tab if(stdres.rollno==roll)\par
+\tab\tab\{\par
+\tab\tab\tab flag=1;\par
+\tab\tab\tab clrscr();\par
+\tab\tab\tab gotoxy(23,25);\par
+\tab\tab\tab cout<<"RECORD FOUND";\par
+\tab\tab\tab gotoxy(23,27);\par
+\tab\tab\tab cout<<"PRESS ANY KEY TO CONTINUE ...";\par
+\tab\tab\tab getch();\par
+\par
+\par
+\tab\tab\tab clrscr();\par
+\tab\tab\tab cout<<"CLASS:";\par
+\tab\tab\tab gotoxy (16,1);\par
+\tab\tab\tab cout<<"SECTION:";\par
+\tab\tab\tab gotoxy(31,1);\par
+\tab\tab\tab cout<<"ROLL NO:";\par
+\tab\tab\tab gotoxy(47,1);\par
+\tab\tab\tab cout<<"STUDENT'S NAME:";\par
+\tab\tab\tab gotoxy(1,5);\par
+\tab\tab\tab cout<<"FATHER NAME:";\par
+\tab\tab\tab gotoxy(45,5);\par
+\tab\tab\tab cout<<"CLASS TEACHER:";\par
+\tab\tab\tab gotoxy(1,9);\par
+\tab\tab\tab cout<<"S.NO.";\par
+\tab\tab\tab gotoxy(15,9);\par
+\tab\tab\tab cout<<"SUBJECT";\par
+\tab\tab\tab gotoxy(30,9);\par
+\tab\tab\tab cout<<"MARKS";\par
+\tab\tab\tab gotoxy(40,9);\par
+\tab\tab\tab cout<<"MAXIMUM MARKS";\par
+\tab\tab\tab gotoxy(70,9);\par
+\tab\tab\tab cout<<"GRADE";\par
+\tab\tab\tab gotoxy(3,11);\par
+\tab\tab\tab cout<<"1";\par
+\tab\tab\tab gotoxy(15,11);\par
+\tab\tab\tab cout<<"ENGLISH";\par
+\tab\tab\tab gotoxy(3,13);\par
+\tab\tab\tab cout<<"2";\par
+\tab\tab\tab gotoxy(15,13);\par
+\tab\tab\tab cout<<"MATHS";\par
+\tab\tab\tab gotoxy(3,15);\par
+\tab\tab\tab cout<<"3";\par
+\tab\tab\tab gotoxy(15,15);\par
+\tab\tab\tab cout<<"PHYSICS";\par
+\tab\tab\tab gotoxy(3,17);\par
+\tab\tab\tab cout<<"4";\par
+\tab\tab\tab gotoxy(15,17);\par
+\tab\tab\tab cout<<"CHEMISTRY";\par
+\tab\tab\tab gotoxy(3,19);\par
+\tab\tab\tab cout<<"5";\par
+\tab\tab\tab gotoxy(15,19);\par
+\tab\tab\tab cout<<"COMPUTER";\par
+\tab\tab\tab gotoxy(3,25);\par
+\tab\tab\tab cout<<"6";\par
+\tab\tab\tab gotoxy(15,25);\par
+\tab\tab\tab cout<<"TOTAL";\par
+\tab\tab\tab gotoxy(3,27);\par
+\tab\tab\tab cout<<"7";\par
+\tab\tab\tab gotoxy(15,27);\par
+\tab\tab\tab cout<<"PERCENTAGE";\par
+\tab\tab\tab gotoxy(8,1);\par
+\tab\tab\tab cout<<stdres.clas; /*printing student information*/\par
+\tab\tab\tab gotoxy(25,1);\par
+\tab\tab\tab cout<<stdres.s;\par
+\tab\tab\tab gotoxy(40,1);\par
+\tab\tab\tab cout<<stdres.rollno;\par
+\tab\tab\tab gotoxy(63,1);\par
+\tab\tab\tab puts(stdres.name);\par
+\tab\tab\tab fflush(stdout);\par
+\tab\tab\tab gotoxy(14,5);\par
+\tab\tab\tab puts(stdres.fatername);\par
+\tab\tab\tab fflush(stdout);\par
+\tab\tab\tab gotoxy(60,5);\par
+\tab\tab\tab puts(stdres.teachname);\par
+\par
+\tab\tab\tab gotoxy(47,11);              /*marks table*/\par
+\tab\tab\tab cout<<"100";\par
+\tab\tab\tab gotoxy(32,11);\par
+\tab\tab\tab cout<<stdres.engmark;\par
+\tab\tab\tab gotoxy(72,11);\par
+\tab\tab\tab cout<<grade(stdres.engmark,max1);\par
+\par
+\tab\tab\tab gotoxy(47,13);\par
+\tab\tab\tab cout<<"100";\par
+\tab\tab\tab gotoxy(32,13);\par
+\tab\tab\tab cout<<stdres.matmark;\par
+\tab\tab\tab gotoxy(72,13);\par
+\tab\tab\tab cout<<grade(stdres.matmark,max1);\par
+\par
+\tab\tab\tab gotoxy(47,15);\par
+\tab\tab\tab cout<<" 70";\par
+\tab\tab\tab gotoxy(32,15);\par
+\tab\tab\tab cout<<stdres.phymark;\par
+\tab\tab\tab gotoxy(72,15);\par
+\tab\tab\tab cout<<grade(stdres.phymark,max2);\par
+\par
+\tab\tab\tab gotoxy(47,17);\par
+\tab\tab\tab cout<<" 70";\par
+\tab\tab\tab gotoxy(32,17);\par
+\tab\tab\tab cout<<stdres.chemark;\par
+\tab\tab\tab gotoxy(72,17);\par
+\tab\tab\tab cout<<grade(stdres.chemark,max2);\par
+\par
+\tab\tab\tab gotoxy(47,19);\par
+\tab\tab\tab cout<<" 70";\par
+\tab\tab\tab gotoxy(32,19);\par
+\tab\tab\tab cout<<stdres.commark;\par
+\tab\tab\tab gotoxy(72,19);\par
+\tab\tab\tab cout<<grade(stdres.commark,max2);\par
+\par
+\tab\tab\tab gotoxy(47,25);\par
+\tab\tab\tab cout<<"410";\par
+\tab\tab\tab gotoxy(31,25);\par
+\par
+cout<<total(stdres.engmark,stdres.matmark,stdres.phymark,stdres.chemark,st\par
+dres.commark);\par
+\par
+stdres.total=total(stdres.engmark,stdres.matmark,stdres.phymark,stdres.che\par
+mark,stdres.commark);\par
+\par
+\tab\tab\tab gotoxy(32,27);\par
+\tab\tab\tab stdres.percentage=percent(stdres.total);\par
+\tab\tab\tab cout<<stdres.percentage;\par
+\tab\tab\tab gotoxy(80,50);\par
+\par
+\tab\tab\tab result.close();\par
+\tab\tab\tab getch();\par
+\tab\tab\tab menu();\par
+\par
+\par
+\tab\tab\}\par
+\tab\tab else\par
+\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\par
+\par
+     \}\par
+\par
+     if(flag==0)\par
+     \{\par
+\par
+\tab clrscr();\par
+\tab gotoxy(23,23);\par
+\tab cout<<"SORRY! The Roll No."<<roll<<" does not exist.";\par
+\tab gotoxy(23,25);\par
+\tab cout<<"         PLEASE! TRY AGAIN.";\par
+\tab result.close();\par
+\tab getch();\par
+\tab menu();\par
+     \}\par
+\}\par
+\}\par
+\par
+void modify()\par
+\par
+   \{                  // FUNCTION TO MODIFY STUDENT'S DATA //\par
+\tab clrscr();\par
+\tab int max1=100,max2=70,roll,flag=0,flag2=0;\par
+\tab char ch,z,n;\par
+\tab gotoxy(23,15);\par
+\tab cout<<"Enter the Roll No. of the student: ";\par
+\tab cin>>roll;\par
+\tab fstream result,tfile;\par
+\tab result.open("result.dat",ios::in|ios::binary);\par
+\tab tfile.open("tfile.dat",ios::out|ios::binary);\par
+\tab result.read((char*)&stdres,sizeof(stdres));\par
+\tab while(result)\par
+\tab\{\par
+\tab\tab if(stdres.rollno==roll)\par
+\tab\tab\{\par
+\tab\tab\tab flag=1;\par
+\tab\tab\tab clrscr();\par
+\tab\tab\tab gotoxy(23,25);\par
+\tab\tab\tab cout<<"RECORD FOUND";\par
+\tab\tab\tab gotoxy(23,27);\par
+\tab\tab\tab cout<<"PRESS ANY KEY TO CONTINUE ...";\par
+\tab\tab\tab getch();\par
+\par
+\par
+\tab\tab\tab clrscr();\par
+\tab\tab\tab cout<<"CLASS:";\par
+\tab\tab\tab gotoxy (16,1);\par
+\tab\tab\tab cout<<"SECTION:";\par
+\tab\tab\tab gotoxy(31,1);\par
+\tab\tab\tab cout<<"ROLL NO:";\par
+\tab\tab\tab gotoxy(47,1);\par
+\tab\tab\tab cout<<"STUDENT'S NAME:";\par
+\tab\tab\tab gotoxy(1,5);\par
+\tab\tab\tab cout<<"FATHER NAME:";\par
+\tab\tab\tab gotoxy(45,5);\par
+\tab\tab\tab cout<<"CLASS TEACHER:";\par
+\tab\tab\tab gotoxy(1,9);\par
+\tab\tab\tab cout<<"S.NO.";\par
+\tab\tab\tab gotoxy(15,9);\par
+\tab\tab\tab cout<<"SUBJECT";\par
+\tab\tab\tab gotoxy(30,9);\par
+\tab\tab\tab cout<<"MARKS";\par
+\tab\tab\tab gotoxy(40,9);\par
+\tab\tab\tab cout<<"MAXIMUM MARKS";\par
+\tab\tab\tab gotoxy(70,9);\par
+\tab\tab\tab cout<<"GRADE";\par
+\tab\tab\tab gotoxy(3,11);\par
+\tab\tab\tab cout<<"1";\par
+\tab\tab\tab gotoxy(15,11);\par
+\tab\tab\tab cout<<"ENGLISH";\par
+\tab\tab\tab gotoxy(3,13);\par
+\tab\tab\tab cout<<"2";\par
+\tab\tab\tab gotoxy(15,13);\par
+\tab\tab\tab cout<<"MATHS";\par
+\tab\tab\tab gotoxy(3,15);\par
+\tab\tab\tab cout<<"3";\par
+\tab\tab\tab gotoxy(15,15);\par
+\tab\tab\tab cout<<"PHYSICS";\par
+\tab\tab\tab gotoxy(3,17);\par
+\tab\tab\tab cout<<"4";\par
+\tab\tab\tab gotoxy(15,17);\par
+\tab\tab\tab cout<<"CHEMISTRY";\par
+\tab\tab\tab gotoxy(3,19);\par
+\tab\tab\tab cout<<"5";\par
+\tab\tab\tab gotoxy(15,19);\par
+\tab\tab\tab cout<<"COMPUTER";\par
+\tab\tab\tab gotoxy(3,25);\par
+\tab\tab\tab cout<<"6";\par
+\tab\tab\tab gotoxy(15,25);\par
+\tab\tab\tab cout<<"TOTAL";\par
+\tab\tab\tab gotoxy(3,27);\par
+\tab\tab\tab cout<<"7";\par
+\tab\tab\tab gotoxy(15,27);\par
+\tab\tab\tab cout<<"PERCENTAGE";\par
+\par
+\tab\tab\tab gotoxy(8,1);\par
+\tab\tab\tab cout<<stdres.clas; /*printing student information*/\par
+\tab\tab\tab gotoxy(25,1);\par
+\tab\tab\tab cout<<stdres.s;\par
+\tab\tab\tab gotoxy(40,1);\par
+\tab\tab\tab cout<<stdres.rollno;\par
+\tab\tab\tab gotoxy(63,1);\par
+\tab\tab\tab puts(stdres.name);\par
+\tab\tab\tab fflush(stdout);\par
+\tab\tab\tab gotoxy(14,5);\par
+\tab\tab\tab puts(stdres.fatername);\par
+\tab\tab\tab fflush(stdout);\par
+\tab\tab\tab gotoxy(60,5);\par
+\tab\tab\tab puts(stdres.teachname);\par
+\par
+\tab\tab\tab gotoxy(47,11);              /*marks table*/\par
+\tab\tab\tab cout<<"100";\par
+\tab\tab\tab gotoxy(32,11);\par
+\tab\tab\tab cout<<stdres.engmark;\par
+\tab\tab\tab gotoxy(72,11);\par
+\tab\tab\tab cout<<grade(stdres.engmark,max1);\par
+\par
+\tab\tab\tab gotoxy(47,13);\par
+\tab\tab\tab cout<<"100";\par
+\tab\tab\tab gotoxy(32,13);\par
+\tab\tab\tab cout<<stdres.matmark;\par
+\tab\tab\tab gotoxy(72,13);\par
+\tab\tab\tab cout<<grade(stdres.matmark,max1);\par
+\par
+\tab\tab\tab gotoxy(47,15);\par
+\tab\tab\tab cout<<" 70";\par
+\tab\tab\tab gotoxy(32,15);\par
+\tab\tab\tab cout<<stdres.phymark;\par
+\tab\tab\tab gotoxy(72,15);\par
+\tab\tab\tab cout<<grade(stdres.phymark,max2);\par
+\par
+\tab\tab\tab gotoxy(47,17);\par
+\tab\tab\tab cout<<" 70";\par
+\tab\tab\tab gotoxy(32,17);\par
+\tab\tab\tab cout<<stdres.chemark;\par
+\tab\tab\tab gotoxy(72,17);\par
+\tab\tab\tab cout<<grade(stdres.chemark,max2);\par
+\par
+\tab\tab\tab gotoxy(47,19);\par
+\tab\tab\tab cout<<" 70";\par
+\tab\tab\tab gotoxy(32,19);\par
+\tab\tab\tab cout<<stdres.commark;\par
+\tab\tab\tab gotoxy(72,19);\par
+\tab\tab\tab cout<<grade(stdres.commark,max2);\par
+\par
+\tab\tab\tab gotoxy(47,25);\par
+\tab\tab\tab cout<<"410";\par
+\tab\tab\tab gotoxy(31,25);\par
+\par
+cout<<total(stdres.engmark,stdres.matmark,stdres.phymark,stdres.chemark,st\par
+dres.commark);\par
+\par
+stdres.total=total(stdres.engmark,stdres.matmark,stdres.phymark,stdres.che\par
+mark,stdres.commark);\par
+\par
+\tab\tab\tab gotoxy(32,27);\par
+\tab\tab\tab stdres.percentage=percent(stdres.total);\par
+\tab\tab\tab cout<<stdres.percentage;\par
+\par
+\par
+\par
+\tab\tab\tab getch();\par
+\par
+\tab\tab\tab gotoxy(32,40);\par
+\tab\tab\tab cout<<"WOULD YOU LIKE TO MAKE ANY CHANGES\par
+ ";\par
+\tab\tab\tab cout<<"IF YES .. PRESS 'A' ";\par
+\tab\tab\tab z=getch();\par
+\tab\tab\tab if(z=='a'||z=='A')\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab flag2=1;\par
+\tab\tab\tab\tab clrscr();            /*again printing format for modification*/\par
+\tab\tab\tab\tab cout<<"CLASS:";\par
+\tab\tab\tab\tab gotoxy (16,1);\par
+\tab\tab\tab cout<<"SECTION:";\par
+\tab\tab\tab gotoxy(31,1);\par
+\tab\tab\tab cout<<"ROLL NO:";\par
+\tab\tab\tab gotoxy(47,1);\par
+\tab\tab\tab cout<<"STUDENT'S NAME:";\par
+\tab\tab\tab gotoxy(1,5);\par
+\tab\tab\tab cout<<"FATHER NAME:";\par
+\tab\tab\tab gotoxy(45,5);\par
+\tab\tab\tab cout<<"CLASS TEACHER:";\par
+\tab\tab\tab gotoxy(1,9);\par
+\tab\tab\tab cout<<"S.NO.";\par
+\tab\tab\tab gotoxy(15,9);\par
+\tab\tab\tab cout<<"SUBJECT";\par
+\tab\tab\tab gotoxy(30,9);\par
+\tab\tab\tab cout<<"MARKS";\par
+\tab\tab\tab gotoxy(40,9);\par
+\tab\tab\tab cout<<"MAXIMUM MARKS";\par
+\tab\tab\tab gotoxy(70,9);\par
+\tab\tab\tab cout<<"GRADE";\par
+\tab\tab\tab gotoxy(3,11);\par
+\tab\tab\tab cout<<"1";\par
+\tab\tab\tab gotoxy(15,11);\par
+\tab\tab\tab cout<<"ENGLISH";\par
+\tab\tab\tab gotoxy(3,13);\par
+\tab\tab\tab cout<<"2";\par
+\tab\tab\tab gotoxy(15,13);\par
+\tab\tab\tab cout<<"MATHS";\par
+\tab\tab\tab gotoxy(3,15);\par
+\tab\tab\tab cout<<"3";\par
+\tab\tab\tab gotoxy(15,15);\par
+\tab\tab\tab cout<<"PHYSICS";\par
+\tab\tab\tab gotoxy(3,17);\par
+\tab\tab\tab cout<<"4";\par
+\tab\tab\tab gotoxy(15,17);\par
+\tab\tab\tab cout<<"CHEMISTRY";\par
+\tab\tab\tab gotoxy(3,19);\par
+\tab\tab\tab cout<<"5";\par
+\tab\tab\tab gotoxy(15,19);\par
+\tab\tab\tab cout<<"COMPUTER";\par
+\tab\tab\tab gotoxy(3,25);\par
+\tab\tab\tab cout<<"6";\par
+\tab\tab\tab gotoxy(15,25);\par
+\tab\tab\tab cout<<"TOTAL";\par
+\tab\tab\tab gotoxy(3,27);\par
+\tab\tab\tab cout<<"7";\par
+\tab\tab\tab gotoxy(15,27);\par
+\tab\tab\tab cout<<"PERCENTAGE";\par
+\par
+\par
+\tab\tab\tab gotoxy(8,1);\par
+\tab\tab\tab cout<<stdres.clas; /*printing student information*/\par
+\tab\tab\tab gotoxy(25,1);\par
+\tab\tab\tab cout<<stdres.s;\par
+\tab\tab\tab gotoxy(40,1);\par
+\tab\tab\tab cout<<stdres.rollno;\par
+\tab\tab\tab gotoxy(63,1);\par
+\par
+\par
+\par
+\tab gotoxy(63,1);\par
+\tab gets(stdres.name);\par
+\tab fflush(stdin);\par
+\par
+\tab gotoxy(14,5);\par
+\tab gets(stdres.fatername);\par
+\tab fflush(stdin);\par
+\tab gotoxy(60,5);\par
+\tab gets(stdres.teachname);\par
+\par
+\tab gotoxy(47,11);                               /*marks table*/\par
+\tab cout<<"100";\par
+\tab gotoxy(32,11);\par
+\tab cin>>stdres.engmark;\par
+\tab gotoxy(72,11);\par
+\tab cout<<grade(stdres.engmark,max1);\par
+\par
+\tab gotoxy(47,13);\par
+\tab cout<<"100";\par
+\tab gotoxy(32,13);\par
+\tab cin>>stdres.matmark;\par
+\tab gotoxy(72,13);\par
+\tab cout<<grade(stdres.matmark,max1);\par
+\par
+\tab gotoxy(47,15);\par
+\tab cout<<" 70";\par
+\tab gotoxy(32,15);\par
+\tab cin>>stdres.phymark;\par
+\tab gotoxy(72,15);\par
+\tab cout<<grade(stdres.phymark,max2);\par
+\par
+\tab gotoxy(47,17);\par
+\tab cout<<" 70";\par
+\tab gotoxy(32,17);\par
+\tab cin>>stdres.chemark;\par
+\tab gotoxy(72,17);\par
+\tab cout<<grade(stdres.chemark,max2);\par
+\par
+\tab gotoxy(47,19);\par
+\tab cout<<" 70";\par
+\tab gotoxy(32,19);\par
+\tab cin>>stdres.commark;\par
+\tab gotoxy(72,19);\par
+\tab cout<<grade(stdres.commark,max2);\par
+\par
+\tab gotoxy(47,25);\par
+\tab cout<<"410";\par
+\tab gotoxy(31,25);\par
+\par
+cout<<total(stdres.engmark,stdres.matmark,stdres.phymark,stdres.chemark,st\par
+dres.commark);\par
+\par
+stdres.total=total(stdres.engmark,stdres.matmark,stdres.phymark,stdres.che\par
+mark,stdres.commark);\par
+\par
+\tab gotoxy(32,27);\par
+\tab stdres.percentage=percent(stdres.total);\par
+\tab cout<<stdres.percentage;\par
+\tab gotoxy(80,50);\par
+\par
+\par
+\tab tfile.write((char*)&stdres,sizeof(stdres));\par
+\tab result.read((char*)&stdres,sizeof(stdres));\par
+\par
+\tab getch();\par
+\tab\}\par
+\tab        else\par
+\tab        \{\par
+\tab\tab tfile.write((char*)&stdres,sizeof(stdres));\par
+\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\tab        \}\par
+\par
+\par
+\tab\tab\}\par
+\tab\tab else\par
+\tab\tab\{\par
+\tab\tab     tfile.write((char*)&stdres,sizeof(stdres));\par
+\par
+\tab\tab     result.read((char*)&stdres,sizeof(stdres));\par
+\tab\tab    \}\par
+\par
+     \}\par
+     result.close();\par
+     tfile.close();\par
+\par
+     if(flag2==1)\par
+     \{\par
+\tab result.open("result.dat",ios::out|ios::binary);\par
+\tab tfile.open("tfile.dat",ios::in|ios::binary);\par
+\tab tfile.read((char*)&stdres,sizeof(stdres));\par
+\tab while(tfile)\par
+\tab\{\par
+\tab\tab result.write((char*)&stdres,sizeof(stdres));\par
+\tab\tab tfile.read((char*)&stdres,sizeof(stdres));\par
+\tab\}\par
+\tab result.close();\par
+\tab tfile.close();\par
+\par
+\par
+\par
+     \}\par
+\par
+     if(flag==0)\par
+     \{\par
+\par
+\tab clrscr();\par
+\tab gotoxy(23,23);\par
+\tab cout<<"SORRY! The Roll No."<<roll<<" does not exist.";\par
+\tab gotoxy(23,25);\par
+\tab cout<<"         PLEASE! TRY AGAIN.";\par
+\tab result.close();\par
+\tab getch();\par
+\par
+     \}\par
+\par
+\par
+  menu();\par
+\}\par
+\par
+\par
+\par
+void merit1()\par
+\par
+\par
+       \{                // FUNCTION TO GENERATE MERIT LIST //\par
+\tab clrscr();\par
+\tab int larg,l,flag=0;\par
+\tab gotoxy(15,17);\par
+\tab cout<<"Press any key for the merit list \par
+";\par
+\tab gotoxy(80,50);\par
+\tab getch();\par
+\tab clrscr();\par
+\tab gotoxy(15,17);\par
+\tab cout<<"PLEASE wait while the list is being generated...";\par
+\tab gotoxy(80,50);\par
+\tab delay(2000);\par
+\tab clrscr();\par
+\tab gotoxy(15,15);\par
+\tab cout<<"LIST generated.";\par
+\tab gotoxy(15,17);\par
+\tab cout<<"press any key to continue...";\par
+\tab gotoxy(80,50);\par
+\tab getch();\par
+\tab clrscr();\par
+\tab fstream result,tfile;\par
+\tab result.open("result.dat",ios::in|ios::binary);\par
+\tab tfile.open("tfile.dat",ios::out|ios::binary);\par
+\par
+\par
+\tab result.read((char*)&stdres,sizeof(stdres));\par
+\tab while(result)\par
+\tab\{\par
+\par
+l=total(stdres.engmark,stdres.matmark,stdres.phymark,stdres.chemark,stdres\par
+commark);\par
+\tab\tab if(l>368)\par
+\tab\tab\{\par
+\tab\tab temp.roll=stdres.rollno;\par
+\tab\tab strcpy(temp.name,stdres.name);\par
+\tab\tab temp.clas=stdres.clas;\par
+\tab\tab temp.sec=stdres.s;\par
+\tab\tab temp.total=l;\par
+\tab\tab tfile.write((char*)&temp,sizeof(temp));\par
+\tab\tab\}\par
+\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\par
+\par
+\tab\}\par
+\par
+\par
+\tab result.close();\par
+\tab tfile.close();\par
+\tab gotoxy(12,1);\par
+\tab cout<<"ROLL NO.";\par
+\tab gotoxy(22,1);\par
+\tab cout<<"NAME";\par
+\tab gotoxy(38,1);\par
+\tab cout<<"TOTAL";\par
+\par
+\tab int k=3;\par
+\tab for(int i=410;i>368;i--)\par
+\tab\{\par
+\par
+\tab\tab tfile.open("tfile.dat",ios::in|ios::binary);\par
+\tab\tab tfile.read((char*)&temp,sizeof(temp));\par
+\tab\tab while(tfile)\par
+\tab\tab\{\par
+\tab\tab\tab if(temp.total==i)\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab flag=1;\par
+\tab\tab\tab\tab gotoxy(15,k);\par
+\tab\tab\tab\tab cout<<temp.roll;\par
+\tab\tab\tab\tab gotoxy(22,k);\par
+\tab\tab\tab\tab cout<<temp.name;\par
+\tab\tab\tab\tab gotoxy(39,k++);\par
+\tab\tab\tab\tab cout<<temp.total;\par
+\tab\tab\tab\tab k++;\par
+\par
+\tab\tab\tab\}\par
+\tab\tab\tab tfile.read((char*)&temp,sizeof(temp));\par
+\par
+\tab\tab\}\par
+\tab\tab tfile.close();\par
+\tab\}\par
+\par
+\par
+\tab if(flag==0)\par
+\tab\{\par
+\tab\tab clrscr();\par
+\tab\tab gotoxy(15,20);\par
+\tab\tab cout<<"SORRY! No record found.";\par
+\tab\}\par
+\tab gotoxy(80,50);\par
+\tab getch();\par
+\tab menu();\par
+\par
+\}\par
+\par
+ void merit()\par
+\{\par
+\tab\tab   // FUNCTION TO GENERATE SECOND MERIT LIST //\par
+\tab reverse:\par
+\tab clrscr();\par
+\tab int n,c,k=3,flag=0,i;\par
+\tab gotoxy(15,2);\par
+\tab cout<<"MENU";\par
+\tab gotoxy(15,4);\par
+\tab cout<<"1. ENGLISH";\par
+\tab gotoxy(15,5);\par
+\tab cout<<"2. MATHEMATICS";\par
+\tab gotoxy(15,6);\par
+\tab cout<<"3. PHYSICS";\par
+\tab gotoxy(15,7);\par
+\tab cout<<"4. CHEMISTRY";\par
+\tab gotoxy(15,8);\par
+\tab cout<<"5. COMPUTER";\par
+\tab gotoxy(15,18);\par
+\tab cout<<"Enter your option: ";\par
+\tab cin>>n;\par
+\tab clrscr();\par
+\par
+\tab fstream result;\par
+\tab switch(n)\par
+\tab\{\par
+\par
+\tab\tab /*english*/\par
+\par
+\tab\tab case 1: back1:\par
+\tab\tab\tab gotoxy(15,2);\par
+\tab\tab\tab cout<<"1. Students with Grade 'A'";\par
+\tab\tab\tab gotoxy(15,3);\par
+\tab\tab\tab cout<<"2. Students with Grade 'B'";\par
+\tab\tab\tab gotoxy(15,4);\par
+\tab\tab\tab cout<<"3. Students with Grade 'C'";\par
+\tab\tab\tab gotoxy(15,5);\par
+\tab\tab\tab cout<<"4. Students with Grade 'E' ";\par
+\tab\tab\tab gotoxy(15,7);\par
+\tab\tab\tab cout<<"Enter your Option: ";\par
+\tab\tab\tab cin>>c;\par
+\tab\tab\tab clrscr();\par
+\tab\tab\tab gotoxy(14,1);\par
+\tab\tab\tab cout<<"Roll no.";\par
+\tab\tab\tab gotoxy(25,1);\par
+\tab\tab\tab cout<<"Name";\par
+\tab\tab\tab gotoxy(37,1);\par
+\tab\tab\tab cout<<"Class";\par
+\tab\tab\tab gotoxy(45,1);\par
+\tab\tab\tab cout<<"Section";\par
+\tab\tab\tab gotoxy(60,1);\par
+\tab\tab\tab cout<<"<Marks";\par
+\tab\tab\tab switch(c)\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab case 1: for(i=100;i>74;i--)\par
+\tab\tab\tab\tab\tab\{\par
+\par
+\tab\tab\tab\tab\tab result.open("result.dat",ios::in|ios::binary);\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\tab\tab\tab\tab\tab while(result)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab if(stdres.engmark==i)\par
+\tab\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\tab flag=1;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy (17,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.rollno;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(25,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.name;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(39,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.clas;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(47,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.s;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(62,k++);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.engmark;\par
+\tab\tab\tab\tab\tab\tab\tab k++;\par
+\par
+\tab\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.close();\par
+\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab if(flag==0)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab gotoxy(20,22);\tab\tab\tab\tab\tab\tab gotoxy(20,22);\par
+\tab\tab\tab\tab\tab\tab cout<<"NO RECORD FOUND.";\par
+\tab\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\par
+\tab\tab\tab\tab\tab getch();\par
+\par
+\tab\tab\tab\tab\tab break;\par
+\par
+\tab\tab\tab\tab case 2:    for(i=74;i>60;i--)\par
+\tab\tab\tab\tab\tab\{\par
+\par
+\tab\tab\tab\tab\tab result.open("result.dat",ios::in|ios::binary);\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\tab\tab\tab\tab\tab while(result)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab if(stdres.engmark==i)\par
+\tab\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\tab flag=1;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy (17,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.rollno;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(25,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.name;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(39,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.clas;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(47,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.s;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(62,k++);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.engmark;\par
+\tab\tab\tab\tab\tab\tab\tab k++;\par
+\par
+\tab\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.close();\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab if(flag==0)\par
+\tab\tab\tab\tab\tab\{\par
+\par
+\tab\tab\tab\tab\tab\tab gotoxy(20,22);\par
+\tab\tab\tab\tab\tab\tab cout<<"NO RECORD FOUND.";\par
+\tab\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab getch();\par
+\tab\tab\tab\tab\tab break;\par
+\par
+\tab\tab\tab\tab case 3:   for(i=60;i>33;i--)\par
+\tab\tab\tab\tab\tab\{\par
+\par
+\tab\tab\tab\tab\tab result.open("result.dat",ios::in|ios::binary);\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\tab\tab\tab\tab\tab while(result)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab if(stdres.engmark==i)\par
+\tab\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\tab flag=1;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy (17,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.rollno;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(25,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.name;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(39,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.clas;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(47,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.s;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(62,k++);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.engmark;\par
+\tab\tab\tab\tab\tab\tab\tab k++;\par
+\par
+\tab\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.close();\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\tab\tab\tab\tab\tab if(flag==0)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab gotoxy(20,22);\par
+\tab\tab\tab\tab\tab\tab cout<<"NO RECORD FOUND.";\par
+\tab\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab  getch();\par
+\tab\tab\tab\tab\tab break;\par
+\tab\tab\tab\tab case 4:    for( i=33;i>0;i--)\par
+\tab\tab\tab\tab\tab\{\par
+\par
+\tab\tab\tab\tab\tab result.open("result.dat",ios::in|ios::binary);\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\tab\tab\tab\tab\tab while(result)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab if(stdres.engmark==i)\par
+\tab\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\tab flag=1;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy (17,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.rollno;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(25,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.name;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(39,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.clas;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(47,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.s;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(62,k++);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.engmark;\par
+\tab\tab\tab\tab\tab\tab\tab  k++;\par
+\par
+\tab\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.close();\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\tab\tab\tab\tab\tab if(flag==0)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab gotoxy(20,22);\par
+\tab\tab\tab\tab\tab\tab cout<<"NO RECORD FOUND.";\par
+\tab\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab getch();\par
+\tab\tab\tab\tab\tab break;\par
+\tab\tab\tab\tab default:clrscr();\par
+\tab\tab\tab\tab\tab gotoxy(25,25);\par
+\tab\tab\tab\tab\tab cout<<"Invalid Option.";\par
+\tab\tab\tab\tab\tab getch();\par
+\tab\tab\tab\tab\tab goto back1;\par
+\tab\tab\tab\}\par
+\par
+\tab\tab\tab menu();\par
+\par
+\par
+\tab\tab\tab /*mathematics*/\par
+\tab\tab case 2: back2:\par
+\tab\tab\tab gotoxy(15,2);\par
+\tab\tab\tab cout<<"1. Students with Grade 'A'";\par
+\tab\tab\tab gotoxy(15,3);\par
+\tab\tab\tab cout<<"2. Students with Grade 'B'";\par
+\tab\tab\tab gotoxy(15,4);\par
+\tab\tab\tab cout<<"3. Students with Grade 'C'";\par
+\tab\tab\tab gotoxy(15,5);\par
+\tab\tab\tab cout<<"4. Students with Grade 'E' ";\par
+\tab\tab\tab gotoxy(15,7);\par
+\tab\tab\tab cout<<"Enter your Option: ";\par
+\tab\tab\tab cin>>c;\par
+\tab\tab\tab clrscr();\par
+\tab\tab\tab gotoxy(14,1);\par
+\tab\tab\tab cout<<"Roll no.";\par
+\tab\tab\tab gotoxy(25,1);\par
+\tab\tab\tab cout<<"Name";\par
+\tab\tab\tab gotoxy(37,1);\par
+\tab\tab\tab cout<<"Class";\par
+\tab\tab\tab gotoxy(45,1);\par
+\tab\tab\tab cout<<"Section";\par
+\tab\tab\tab gotoxy(60,1);\par
+\tab\tab\tab cout<<"Marks";\par
+\tab\tab\tab switch(c)\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab case 1: for(i=100;i>74;i--)\par
+\tab\tab\tab\tab\tab\{\par
+\par
+\tab\tab\tab\tab\tab result.open("result.dat",ios::in|ios::binary);\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\tab\tab\tab\tab\tab while(result)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab if(stdres.matmark==i)\par
+\tab\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\tab flag=1;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy (17,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.rollno;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(25,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.name;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(39,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.clas;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(47,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.s;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(62,k++);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.matmark;\par
+\tab\tab\tab\tab\tab\tab\tab k++;\par
+\par
+\tab\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.close();\par
+\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab if(flag==0)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab gotoxy(20,22);\tab\tab\tab\tab\tab\tab gotoxy(20,22);\par
+\tab\tab\tab\tab\tab\tab cout<<"NO RECORD FOUND.";\par
+\tab\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\par
+\tab\tab\tab\tab\tab getch();\par
+\par
+\tab\tab\tab\tab\tab break;\par
+\par
+\tab\tab\tab\tab case 2:    for(i=74;i>60;i--)\par
+\tab\tab\tab\tab\tab\{\par
+\par
+\tab\tab\tab\tab\tab result.open("result.dat",ios::in|ios::binary);\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\tab\tab\tab\tab\tab while(result)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab if(stdres.matmark==i)\par
+\tab\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\tab flag=1;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy (17,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.rollno;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(25,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.name;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(39,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.clas;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(47,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.s;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(62,k++);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.matmark;\par
+\tab\tab\tab\tab\tab\tab\tab k++;\par
+\par
+\tab\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.close();\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\tab\tab\tab\tab\tab\tab if(flag==0)\par
+\tab\tab\tab\tab\tab\{\par
+\par
+\tab\tab\tab\tab\tab\tab gotoxy(20,22);\par
+\tab\tab\tab\tab\tab\tab cout<<"NO RECORD FOUND.";\par
+\tab\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab getch();\par
+\tab\tab\tab\tab\tab break;\par
+\par
+\tab\tab\tab\tab case 3:   for(i=60;i>33;i--)\par
+\tab\tab\tab\tab\tab\{\par
+\par
+\tab\tab\tab\tab\tab result.open("result.dat",ios::in|ios::binary);\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\tab\tab\tab\tab\tab while(result)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab if(stdres.matmark==i)\par
+\tab\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\tab flag=1;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy (17,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.rollno;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(25,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.name;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(39,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.clas;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(47,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.s;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(62,k++);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.matmark;\par
+\tab\tab\tab\tab\tab\tab\tab k++;\par
+\par
+\tab\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.close();\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\tab\tab\tab\tab\tab if(flag==0)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab gotoxy(20,22);\par
+\tab\tab\tab\tab\tab\tab cout<<"NO RECORD FOUND.";\par
+\tab\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab  getch();\par
+\tab\tab\tab\tab\tab break;\par
+\tab\tab\tab\tab case 4:    for( i=33;i>0;i--)\par
+\tab\tab\tab\tab\tab\{\par
+\par
+\tab\tab\tab\tab\tab result.open("result.dat",ios::in|ios::binary);\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\tab\tab\tab\tab\tab while(result)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab if(stdres.matmark==i)\par
+\tab\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\tab flag=1;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy (17,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.rollno;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(25,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.name;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(39,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.clas;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(47,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.s;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(62,k++);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.matmark;\par
+\tab\tab\tab\tab\tab\tab\tab  k++;\par
+\par
+\tab\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.close();\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\tab\tab\tab\tab\tab if(flag==0)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab gotoxy(20,22);\par
+\tab\tab\tab\tab\tab\tab cout<<"NO RECORD FOUND.";\par
+\tab\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab getch();\par
+\tab\tab\tab\tab\tab break;\par
+\tab\tab\tab\tab default:clrscr();\par
+\tab\tab\tab\tab\tab gotoxy(25,25);\par
+\tab\tab\tab\tab\tab cout<<"Invalid Option.";\par
+\tab\tab\tab\tab\tab getch();\par
+\tab\tab\tab\tab\tab goto back2;\par
+\tab\tab\tab\}\par
+\par
+\tab\tab\tab menu();\par
+\par
+\tab\tab        /*physics*/\par
+\par
+\tab\tab case 3: back3:\par
+\tab\tab\tab gotoxy(15,2);\par
+\tab\tab\tab cout<<"1. Students with Grade 'A'";\par
+\tab\tab\tab gotoxy(15,3);\par
+\tab\tab\tab cout<<"2. Students with Grade 'B'";\par
+\tab\tab\tab gotoxy(15,4);\par
+\tab\tab\tab cout<<"3. Students with Grade 'C'";\par
+\tab\tab\tab gotoxy(15,5);\par
+\tab\tab\tab cout<<"4. Students with Grade 'E' ";\par
+\tab\tab\tab gotoxy(15,7);\par
+\tab\tab\tab cout<<"Enter your Option: ";\par
+\tab\tab\tab cin>>c;\par
+\tab\tab\tab clrscr();\par
+\tab\tab\tab gotoxy(14,1);\par
+\tab\tab\tab cout<<"Roll no.";\par
+\tab\tab\tab gotoxy(25,1);\par
+\tab\tab\tab cout<<"Name";\par
+\tab\tab\tab gotoxy(37,1);\par
+\tab\tab\tab cout<<"Class";\par
+\tab\tab\tab gotoxy(45,1);\par
+\tab\tab\tab cout<<"Section";\par
+\tab\tab\tab gotoxy(60,1);\par
+\tab\tab\tab cout<<"Marks";\par
+\tab\tab\tab switch(c)\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab case 1: for(i=100;i>74;i--)\par
+\tab\tab\tab\tab\tab\{\par
+\par
+\tab\tab\tab\tab\tab result.open("result.dat",ios::in|ios::binary);\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\tab\tab\tab\tab\tab while(result)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab if(stdres.phymark==i)\par
+\tab\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\tab flag=1;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy (17,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.rollno;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(25,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.name;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(39,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.clas;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(47,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.s;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(62,k++);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.phymark;\par
+\tab\tab\tab\tab\tab\tab\tab k++;\par
+\par
+\tab\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.close();\par
+\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab if(flag==0)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab gotoxy(20,22);\tab\tab\tab\tab\tab\tab gotoxy(20,22);\par
+\tab\tab\tab\tab\tab\tab cout<<"NO RECORD FOUND.";\par
+\tab\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\par
+\tab\tab\tab\tab\tab getch();\par
+\par
+\tab\tab\tab\tab\tab break;\par
+\par
+\tab\tab\tab\tab case 2:    for(i=74;i>60;i--)\par
+\tab\tab\tab\tab\tab\{\par
+\par
+\tab\tab\tab\tab\tab result.open("result.dat",ios::in|ios::binary);\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\tab\tab\tab\tab\tab while(result)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab if(stdres.phymark==i)\par
+\tab\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\tab flag=1;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy (17,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.rollno;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(25,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.name;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(39,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.clas;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(47,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.s;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(62,k++);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.phymark;\par
+\tab\tab\tab\tab\tab\tab\tab k++;\par
+\par
+\tab\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.close();\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab if(flag==0)\par
+\tab\tab\tab\tab\tab\{\par
+\par
+\tab\tab\tab\tab\tab\tab gotoxy(20,22);\par
+\tab\tab\tab\tab\tab\tab cout<<"NO RECORD FOUND.";\par
+\tab\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab getch();\par
+\tab\tab\tab\tab\tab break;\par
+\par
+\tab\tab\tab\tab case 3:   for(i=60;i>33;i--)\par
+\tab\tab\tab\tab\tab\{\par
+\par
+\tab\tab\tab\tab\tab result.open("result.dat",ios::in|ios::binary);\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\tab\tab\tab\tab\tab while(result)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab if(stdres.phymark==i)\par
+\tab\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\tab flag=1;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy (17,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.rollno;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(25,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.name;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(39,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.clas;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(47,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.s;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(62,k++);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.phymark;\par
+\tab\tab\tab\tab\tab\tab\tab k++;\par
+\par
+\tab\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.close();\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\tab\tab\tab\tab\tab if(flag==0)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab gotoxy(20,22);\par
+\tab\tab\tab\tab\tab\tab cout<<"NO RECORD FOUND.";\par
+\tab\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab  getch();\par
+\tab\tab\tab\tab\tab break;\par
+\tab\tab\tab\tab case 4:    for( i=33;i>0;i--)\par
+\tab\tab\tab\tab\tab\{\par
+\par
+\tab\tab\tab\tab\tab result.open("result.dat",ios::in|ios::binary);\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\tab\tab\tab\tab\tab while(result)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab if(stdres.phymark==i)\par
+\tab\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\tab flag=1;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy (17,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.rollno;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(25,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.name;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(39,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.clas;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(47,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.s;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(62,k++);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.phymark;\par
+\tab\tab\tab\tab\tab\tab\tab  k++;\par
+\par
+\tab\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.close();\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\tab\tab\tab\tab\tab if(flag==0)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab gotoxy(20,22);\par
+\tab\tab\tab\tab\tab\tab cout<<"NO RECORD FOUND.";\par
+\tab\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab getch();\par
+\tab\tab\tab\tab\tab break;\par
+\tab\tab\tab\tab default:clrscr();\par
+\tab\tab\tab\tab\tab gotoxy(25,25);\par
+\tab\tab\tab\tab\tab cout<<"Invalid Option.";\par
+\tab\tab\tab\tab\tab getch();\par
+\tab\tab\tab\tab\tab goto back3;\par
+\tab\tab\tab\}\par
+\par
+\tab\tab\tab menu();\par
+\par
+\par
+\tab\tab\tab /*chemistry*/\par
+\tab\tab case 4: back4:\par
+\tab\tab\tab gotoxy(15,2);\par
+\tab\tab\tab cout<<"1. Students with Grade 'A'";\par
+\tab\tab\tab gotoxy(15,3);\par
+\tab\tab\tab cout<<"2. Students with Grade 'B'";\par
+\tab\tab\tab gotoxy(15,4);\par
+\tab\tab\tab cout<<"3. Students with Grade 'C'";\par
+\tab\tab\tab gotoxy(15,5);\par
+\tab\tab\tab cout<<"4. Students with Grade 'E' ";\par
+\tab\tab\tab gotoxy(15,7);\par
+\tab\tab\tab cout<<"Enter your Option: ";\par
+\tab\tab\tab cin>>c;\par
+\tab\tab\tab clrscr();\par
+\tab\tab\tab gotoxy(14,1);\par
+\tab\tab\tab cout<<"Roll no.";\par
+\tab\tab\tab gotoxy(25,1);\par
+\tab\tab\tab cout<<"Name";\par
+\tab\tab\tab gotoxy(37,1);\par
+\tab\tab\tab cout<<"Class";\par
+\tab\tab\tab gotoxy(45,1);\par
+\tab\tab\tab cout<<"Section";\par
+\tab\tab\tab gotoxy(60,1);\par
+\tab\tab\tab cout<<"Marks";\par
+\tab\tab\tab switch(c)\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab case 1: for(i=100;i>74;i--)\par
+\tab\tab\tab\tab\tab\{\par
+\par
+\tab\tab\tab\tab\tab result.open("result.dat",ios::in|ios::binary);\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\tab\tab\tab\tab\tab while(result)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab if(stdres.chemark==i)\par
+\tab\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\tab flag=1;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy (17,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.rollno;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(25,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.name;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(39,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.clas;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(47,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.s;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(62,k++);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.chemark;\par
+\tab\tab\tab\tab\tab\tab\tab k++;\par
+\par
+\tab\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.close();\par
+\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab if(flag==0)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab gotoxy(20,22);\tab\tab\tab\tab\tab\tab gotoxy(20,22);\par
+\tab\tab\tab\tab\tab\tab cout<<"NO RECORD FOUND.";\par
+\tab\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\par
+\tab\tab\tab\tab\tab getch();\par
+\par
+\tab\tab\tab\tab\tab break;\par
+\par
+\tab\tab\tab\tab case 2:    for(i=74;i>60;i--)\par
+\tab\tab\tab\tab\tab\{\par
+\par
+\tab\tab\tab\tab\tab result.open("result.dat",ios::in|ios::binary);\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\tab\tab\tab\tab\tab while(result)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab if(stdres.chemark==i)\par
+\tab\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\tab flag=1;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy (17,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.rollno;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(25,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.name;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(39,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.clas;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(47,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.s;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(62,k++);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.chemark;\par
+\tab\tab\tab\tab\tab\tab\tab k++;\par
+\par
+\tab\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.close();\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\tab\tab\tab\tab\tab\tab\tab\tab\tab\tab if(flag==0)\par
+\tab\tab\tab\tab\tab\{\par
+\par
+\tab\tab\tab\tab\tab\tab gotoxy(20,22);\par
+\tab\tab\tab\tab\tab\tab cout<<"NO RECORD FOUND.";\par
+\tab\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab getch();\par
+\tab\tab\tab\tab\tab break;\par
+\par
+\tab\tab\tab\tab case 3:   for(i=60;i>33;i--)\par
+\tab\tab\tab\tab\tab\{\par
+\par
+\tab\tab\tab\tab\tab result.open("result.dat",ios::in|ios::binary);\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\tab\tab\tab\tab\tab while(result)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab if(stdres.chemark==i)\par
+\tab\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\tab flag=1;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy (17,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.rollno;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(25,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.name;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(39,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.clas;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(47,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.s;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(62,k++);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.chemark;\par
+\tab\tab\tab\tab\tab\tab\tab k++;\par
+\par
+\tab\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.close();\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\tab\tab\tab\tab\tab if(flag==0)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab gotoxy(20,22);\par
+\tab\tab\tab\tab\tab\tab cout<<"NO RECORD FOUND.";\par
+\tab\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab  getch();\par
+\tab\tab\tab\tab\tab break;\par
+\tab\tab\tab\tab case 4:    for( i=33;i>0;i--)\par
+\tab\tab\tab\tab\tab\{\par
+\par
+\tab\tab\tab\tab\tab result.open("result.dat",ios::in|ios::binary);\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\tab\tab\tab\tab\tab while(result)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab if(stdres.chemark==i)\par
+\tab\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\tab flag=1;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy (17,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.rollno;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(25,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.name;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(39,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.clas;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(47,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.s;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(62,k++);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.chemark;\par
+\tab\tab\tab\tab\tab\tab\tab  k++;\par
+\par
+\tab\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.close();\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\tab\tab\tab\tab\tab if(flag==0)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab gotoxy(20,22);\par
+\tab\tab\tab\tab\tab\tab cout<<"NO RECORD FOUND.";\par
+\tab\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab getch();\par
+\tab\tab\tab\tab\tab break;\par
+\tab\tab\tab\tab default:clrscr();\par
+\tab\tab\tab\tab\tab gotoxy(25,25);\par
+\tab\tab\tab\tab\tab cout<<"Invalid Option.";\par
+\tab\tab\tab\tab\tab getch();\par
+\tab\tab\tab\tab\tab goto back4;\par
+\tab\tab\tab\}\par
+\par
+\tab\tab\tab menu();\par
+\par
+\tab\tab\tab /*computer*/\par
+\par
+\tab\tab case 5: back5:\par
+\tab\tab\tab gotoxy(15,2);\par
+\tab\tab\tab cout<<"1. Students with Grade 'A'";\par
+\tab\tab\tab gotoxy(15,3);\par
+\tab\tab\tab cout<<"2. Students with Grade 'B'";\par
+\tab\tab\tab gotoxy(15,4);\par
+\tab\tab\tab cout<<"3. Students with Grade 'C'";\par
+\tab\tab\tab gotoxy(15,5);\par
+\tab\tab\tab cout<<"4. Students with Grade 'E' ";\par
+\tab\tab\tab gotoxy(15,7);\par
+\tab\tab\tab cout<<"Enter your Option: ";\par
+\tab\tab\tab cin>>c;\par
+\tab\tab\tab clrscr();\par
+\tab\tab\tab gotoxy(14,1);\par
+\tab\tab\tab cout<<"Roll no.";\par
+\tab\tab\tab gotoxy(25,1);\par
+\tab\tab\tab cout<<"Name";\par
+\tab\tab\tab gotoxy(37,1);\par
+\tab\tab\tab cout<<"Class";\par
+\tab\tab\tab gotoxy(45,1);\par
+\tab\tab\tab cout<<"Section";\par
+\tab\tab\tab gotoxy(60,1);\par
+\tab\tab\tab cout<<"Marks";\par
+\tab\tab\tab switch(c)\par
+\tab\tab\tab\{\par
+\tab\tab\tab\tab case 1: for(i=100;i>74;i--)\par
+\tab\tab\tab\tab\tab\{\par
+\par
+\tab\tab\tab\tab\tab result.open("result.dat",ios::in|ios::binary);\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\tab\tab\tab\tab\tab while(result)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab if(stdres.commark==i)\par
+\tab\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\tab flag=1;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy (17,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.rollno;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(25,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.name;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(39,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.clas;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(47,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.s;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(62,k++);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.commark;\par
+\tab\tab\tab\tab\tab\tab\tab k++;\par
+\par
+\tab\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.close();\par
+\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab if(flag==0)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab gotoxy(20,22);\tab\tab\tab\tab\tab\tab gotoxy(20,22);\par
+\tab\tab\tab\tab\tab\tab cout<<"NO RECORD FOUND.";\par
+\tab\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\par
+\tab\tab\tab\tab\tab getch();\par
+\par
+\tab\tab\tab\tab\tab break;\par
+\par
+\tab\tab\tab\tab case 2:    for(i=74;i>60;i--)\par
+\tab\tab\tab\tab\tab\{\par
+\par
+\tab\tab\tab\tab\tab result.open("result.dat",ios::in|ios::binary);\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\tab\tab\tab\tab\tab while(result)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab if(stdres.commark==i)\par
+\tab\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\tab flag=1;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy (17,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.rollno;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(25,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.name;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(39,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.clas;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(47,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.s;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(62,k++);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.commark;\par
+\tab\tab\tab\tab\tab\tab\tab k++;\par
+\par
+\tab\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.close();\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\par
+\tab\tab\tab\tab\tab if(flag==0)\par
+\tab\tab\tab\tab\tab\{\par
+\par
+\tab\tab\tab\tab\tab\tab gotoxy(20,22);\par
+\tab\tab\tab\tab\tab\tab cout<<"NO RECORD FOUND.";\par
+\tab\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab getch();\par
+\tab\tab\tab\tab\tab break;\par
+\par
+\tab\tab\tab\tab case 3:   for(i=60;i>33;i--)\par
+\tab\tab\tab\tab\tab\{\par
+\par
+\tab\tab\tab\tab\tab result.open("result.dat",ios::in|ios::binary);\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\tab\tab\tab\tab\tab while(result)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab if(stdres.commark==i)\par
+\tab\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\tab flag=1;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy (17,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.rollno;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(25,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.name;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(39,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.clas;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(47,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.s;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(62,k++);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.commark;\par
+\tab\tab\tab\tab\tab\tab\tab k++;\par
+\par
+\tab\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.close();\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\tab\tab\tab\tab\tab if(flag==0)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab gotoxy(20,22);\par
+\tab\tab\tab\tab\tab\tab cout<<"NO RECORD FOUND.";\par
+\tab\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab  getch();\par
+\tab\tab\tab\tab\tab break;\par
+\tab\tab\tab\tab case 4:    for( i=33;i>0;i--)\par
+\tab\tab\tab\tab\tab\{\par
+\par
+\tab\tab\tab\tab\tab result.open("result.dat",ios::in|ios::binary);\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\tab\tab\tab\tab\tab while(result)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab if(stdres.commark==i)\par
+\tab\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab\tab flag=1;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy (17,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.rollno;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(25,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.name;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(39,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.clas;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(47,k);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.s;\par
+\tab\tab\tab\tab\tab\tab\tab gotoxy(62,k++);\par
+\tab\tab\tab\tab\tab\tab\tab cout<<stdres.commark;\par
+\tab\tab\tab\tab\tab\tab\tab  k++;\par
+\par
+\tab\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab result.close();\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\tab\tab\tab\tab\tab if(flag==0)\par
+\tab\tab\tab\tab\tab\{\par
+\tab\tab\tab\tab\tab\tab gotoxy(20,22);\par
+\tab\tab\tab\tab\tab\tab cout<<"NO RECORD FOUND.";\par
+\tab\tab\tab\tab\tab\tab gotoxy(80,50);\par
+\tab\tab\tab\tab\tab\}\par
+\tab\tab\tab\tab\tab getch();\par
+\tab\tab\tab\tab\tab break;\par
+\tab\tab\tab\tab default:clrscr();\par
+\tab\tab\tab\tab\tab gotoxy(25,25);\par
+\tab\tab\tab\tab\tab cout<<"Invalid Option.";\par
+\tab\tab\tab\tab\tab getch();\par
+\tab\tab\tab\tab\tab goto back5;\par
+\tab\tab\tab\}\par
+\par
+\tab\tab\tab menu();\par
+\par
+\par
+\tab\tab default: clrscr();\par
+\tab\tab\tab  cout<<"INVALID OPTION";\par
+\tab\tab\tab  getch();\par
+\tab\tab\tab  menu();\par
+\par
+\tab  \}\par
+\par
+\par
+\par
+\par
+\par
+    gotoxy(80,50);\par
+\par
+\par
+\}\par
+\par
+void delet()\par
+\par
+\par
+  \{            // FUNCTION TO DELETE A RESULT ENTRY //\par
+\tab clrscr();\par
+\tab student stud;\par
+\tab int r,s,flag=0;\par
+\tab char t,z;\par
+\tab cout<<"Enter the class: ";\par
+\tab cin>>s;\par
+\tab cout<<"Enter the section: ";\par
+\tab cin>>t;\par
+\tab cout<<"Enter the roll no.";\par
+\tab cin>>r;\par
+\tab fstream result,tfile;\par
+\par
+\tab result.open("result.dat",ios::in|ios::binary);\par
+\tab tfile.open("tfile.dat",ios::out|ios::binary);\par
+\tab result.read((char*)&stdres,sizeof(stdres));\par
+\tab while(result)\par
+\tab\{\par
+\tab\tab if(stdres.clas==s&&stdres.s==t&&stdres.rollno==r)\par
+\tab\tab\{\par
+\tab\tab\tab clrscr();\par
+\tab\tab\tab flag=1;\par
+\tab\tab\tab gotoxy(20,20);\par
+\tab\tab\tab cout<<"RECORD FOUND AND DELETED.";\par
+\tab\tab\tab getch();\par
+\tab\tab\}\par
+\tab\tab else\par
+\tab\tab tfile.write((char*)&stdres,sizeof(stdres));\par
+\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\tab\}\par
+\tab result.close();\par
+\tab tfile.close();\par
+\par
+\tab if(flag==0)\par
+\tab\{\par
+\tab\tab clrscr();\par
+\tab\tab gotoxy(25,22);\par
+\tab\tab cout<<"RECORD NOT FOUND.";\par
+\tab\tab getch();\par
+\tab\tab exit(0);\par
+\tab\}\par
+\par
+\par
+\tab result.open("result.dat",ios::out|ios::binary);\par
+\tab tfile.open("tfile.dat",ios::in|ios::binary);\par
+\tab tfile.read((char*)&stdres,sizeof(stdres));\par
+\tab while(tfile)\par
+\tab\{\par
+\tab\tab result.write((char*)&stdres,sizeof(stdres));\par
+\tab\tab tfile.read((char*)&stdres,sizeof(stdres));\par
+\tab\}\par
+\tab result.close();\par
+\tab tfile.close();\par
+\par
+       /*DISPLAYING THE RECORDS AFTER DELETION*/\par
+\par
+       clrscr();\par
+       cout<<"New File after Deletion of Record";\par
+       getch();\par
+\par
+\par
+\par
+\par
+\tab\tab result.open("result.dat",ios::in|ios::binary);\par
+\tab\tab result.read((char*)&stdres,sizeof(stdres));\par
+\par
+\par
+       while(result)\par
+    \{\par
+\tab clrscr();\par
+\tab int max1=100,max2=70;\par
+\tab char ch;\par
+\tab cout<<"CLASS:";\par
+\tab gotoxy (16,1);\par
+\tab cout<<"SECTION:";\par
+\tab gotoxy(31,1);\par
+\tab cout<<"ROLL NO:";\par
+\tab gotoxy(47,1);\par
+\tab cout<<"STUDENT'S NAME:";\par
+\tab gotoxy(1,5);\par
+\tab cout<<"FATHER NAME:";\par
+\tab gotoxy(45,5);\par
+\tab cout<<"CLASS TEACHER:";\par
+\tab gotoxy(1,9);\par
+\tab cout<<"S.NO.";\par
+\tab gotoxy(15,9);\par
+\tab cout<<"SUBJECT";\par
+\tab gotoxy(30,9);\par
+\tab cout<<"MARKS";\par
+\tab gotoxy(40,9);\par
+\tab cout<<"MAXIMUM MARKS";\par
+\tab gotoxy(70,9);\par
+\tab cout<<"GRADE";\par
+\tab gotoxy(3,11);\par
+\tab cout<<"1";\par
+\tab gotoxy(15,11);\par
+\tab cout<<"ENGLISH";\par
+\tab gotoxy(3,13);\par
+\tab cout<<"2";\par
+\tab gotoxy(15,13);\par
+\tab cout<<"MATHS";\par
+\tab gotoxy(3,15);\par
+\tab cout<<"3";\par
+\tab gotoxy(15,15);\par
+\tab cout<<"PHYSICS";\par
+\tab gotoxy(3,17);\par
+\tab cout<<"4";\par
+\tab gotoxy(15,17);\par
+\tab cout<<"CHEMISTRY";\par
+\tab gotoxy(3,19);\par
+\tab cout<<"5";\par
+\tab gotoxy(15,19);\par
+\tab cout<<"COMPUTER";\par
+\tab gotoxy(3,25);\par
+\tab cout<<"6";\par
+\tab gotoxy(15,25);\par
+\tab cout<<"TOTAL";\par
+\tab gotoxy(3,27);\par
+\tab cout<<"7";\par
+\tab gotoxy(15,27);\par
+\tab cout<<"PERCENTAGE";\par
+\tab\tab\tab gotoxy(8,1);\par
+\tab\tab\tab cout<<stdres.clas; /*printing student information*/\par
+\tab\tab\tab gotoxy(25,1);\par
+\tab\tab\tab cout<<stdres.s;\par
+\tab\tab\tab gotoxy(40,1);\par
+\tab\tab\tab cout<<stdres.rollno;\par
+\tab\tab\tab gotoxy(63,1);\par
+\tab\tab\tab puts(stdres.name);\par
+\tab\tab\tab fflush(stdout);\par
+\tab\tab\tab gotoxy(14,5);\par
+\tab\tab\tab puts(stdres.fatername);\par
+\tab\tab\tab fflush(stdout);\par
+\tab\tab\tab gotoxy(60,5);\par
+\tab\tab\tab puts(stdres.teachname);\par
+\par
+\tab\tab\tab gotoxy(47,11);              /*marks table*/\par
+\tab\tab\tab cout<<"100";\par
+\tab\tab\tab gotoxy(32,11);\par
+\tab\tab\tab cout<<stdres.engmark;\par
+\tab\tab\tab gotoxy(72,11);\par
+\tab\tab\tab cout<<stud.grade(stdres.engmark,max1);\par
+\par
+\tab\tab\tab gotoxy(47,13);\par
+\tab\tab\tab cout<<"100";\par
+\tab\tab\tab gotoxy(32,13);\par
+\tab\tab\tab cout<<stdres.matmark;\par
+\tab\tab\tab gotoxy(72,13);\par
+\tab\tab\tab cout<<stud.grade(stdres.matmark,max1);\par
+\par
+\tab\tab\tab gotoxy(47,15);\par
+\tab\tab\tab cout<<" 70";\par
+\tab\tab\tab gotoxy(32,15);\par
+\tab\tab\tab cout<<stdres.phymark;\par
+\tab\tab\tab gotoxy(72,15);\par
+\tab\tab\tab cout<<stud.grade(stdres.phymark,max2);\par
+\par
+\tab\tab\tab gotoxy(47,17);\par
+\tab\tab\tab cout<<" 70";\par
+\tab\tab\tab gotoxy(32,17);\par
+\tab\tab\tab cout<<stdres.chemark;\par
+\tab\tab\tab gotoxy(72,17);\par
+\tab\tab\tab cout<<stud.grade(stdres.chemark,max2);\par
+\par
+\tab\tab\tab gotoxy(47,19);\par
+\tab\tab\tab cout<<" 70";\par
+\tab\tab\tab gotoxy(32,19);\par
+\tab\tab\tab cout<<stdres.commark;\par
+\tab\tab\tab gotoxy(72,19);\par
+\tab\tab\tab cout<<stud.grade(stdres.commark,max2);\par
+\par
+\par
+\tab gotoxy(47,25);\par
+\tab cout<<"410";\par
+\tab gotoxy(31,25);\par
+\par
+cout<< stud.total(stdres.engmark, stdres.matmark, stdres.phymark, stdres.chemark,stdres.commark);\par
+\par
+stdres.total = stud.total(stdres.engmark,stdres.matmark, stdres.phymark, stdres.chemark, stdres.commark);\par
+\par
+\tab gotoxy(32,27);\par
+\tab stdres.percentage=stud.percent(stdres.total);\par
+\tab cout<<stdres.percentage;\par
+\tab gotoxy(80,50);\par
+\tab result.read((char*)&stdres,sizeof(stdres));\par
+\tab getch();\par
+\par
+   \}\par
+\par
+\tab result.close();\par
+\tab menu();\par
+\par
+ \}\par
+\par
+}
+ 

@@ -1,0 +1,506 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\froman\fcharset0 Times New Roman;}{\f1\fswiss\fcharset0 Arial;}}
+{\*\generator Msftedit 5.41.21.2508;}\viewkind4\uc1\pard\sb100\sa100\f0\fs24 This Project is Based on the Actual Transaction int The\line Resturants\line\par
+\pard\f1\fs20\par
+\par
+\par
+\par
+\par
+Code :\par
+/* This code is used to determine certain information by giving the\par
+necessary data */\par
+\par
+/*Author: Earl Christian Salvador*/\par
+\par
+#include <stdio.h>\par
+#include <conio.h>\par
+#include <string.h>\par
+#include <DOS.h>\par
+int menu();\par
+int year, month, day;\par
+void main()\par
+\{\par
+start:\par
+clrscr();\par
+printf("Enter Year (1970-2005):");\par
+scanf("%d",&year);\par
+if (year<1970||year>2005)\par
+\tab goto start;\par
+\par
+skip:\par
+printf("\par
+Enter Your Month No. (1-12):");\par
+scanf("%d",&month);\par
+\par
+if (month==1)\par
+\tab\{\par
+\tab back:\par
+\tab printf("\par
+Enter Day (1-31):");\par
+\tab scanf("%d",&day);\par
+\tab if (day<=19)\par
+\tab\tab\{\par
+\tab\tab clrscr();\par
+\tab\tab printf("%d-%d-%d\par
+",month,day,year);\par
+\tab\tab menu();\par
+\tab\tab printf("You are born on the month of JANUARY.\par
+");\par
+\tab\tab printf("Your BirthStone is GARNET.\par
+");\par
+\tab\tab printf("You are a CAPRICORN.");\par
+\tab\tab\}\par
+\tab else if (day>19&&day<=31)\par
+\tab\tab\{\par
+\tab\tab\tab\tab\tab  clrscr();\par
+\tab\tab printf("%d-%d-%d\par
+",month,day,year);\par
+\tab\tab menu();\par
+\tab\tab printf("You are born on the month of JANUARY.\par
+");\par
+\tab\tab printf("Your BirthStone is GARNET.\par
+");\par
+\tab\tab printf("You are an AQUARIUS.");\par
+\tab\tab\}\par
+\tab else\par
+\tab\tab\{printf("Enter Correct Day!!!!!!");\par
+\tab\tab goto back;\}\par
+\tab\}\par
+\par
+else if (month==2)\par
+\tab\{\par
+\tab back1:\par
+\tab printf("\par
+Enter Day (1-29):");\par
+\tab scanf("%d",&day);\par
+\tab if (day<=18)\par
+\tab\tab\{\par
+\tab\tab\tab\tab\tab  clrscr();\par
+\tab\tab printf("%d-%d-%d\par
+",month,day,year);\par
+\tab\tab menu();\par
+\tab\tab printf("You are born on the month of FEBRUARY.\par
+");\par
+\tab\tab printf("Your BirthStone is AMETHYST.\par
+");\par
+\tab\tab printf("You are an AQUARIUS.");\par
+\tab\tab\}\par
+\tab else if (day>18&&day<=29)\par
+\tab\tab\{\par
+\tab\tab\tab\tab\tab  clrscr();\par
+\tab\tab printf("%d-%d-%d\par
+",month,day,year);\par
+\tab\tab menu();\par
+\tab\tab printf("You are born on the month of FEBRUARY.\par
+");\par
+\tab\tab printf("Your BirthStone is AMETHYST.\par
+");\par
+\tab\tab printf("You are a PISCES.");\par
+\tab\tab\}\par
+\tab else\par
+\tab\tab\{printf("Enter Correct Day!!!!!!");\par
+\tab\tab goto back1;\}\par
+\tab\}\par
+\par
+else if (month==3)\par
+\tab\{\par
+\tab back2:\par
+\tab printf("\par
+Enter Day (1-31):");\par
+\tab scanf("%d",&day);\par
+\tab if (day<=20)\par
+\tab\tab\{\par
+\tab\tab\tab\tab\tab  clrscr();\par
+\tab\tab printf("%d-%d-%d\par
+",month,day,year);\par
+\tab\tab menu();\par
+\tab\tab printf("You are born on the month of MARCH.\par
+");\par
+\tab\tab printf("Your BirthStone is AQUAMARINE or BLOODSTONE.\par
+");\par
+\tab\tab printf("You are a PISCES.");\par
+\tab\tab\}\par
+\tab else if (day>20&&day<=31)\par
+\tab\tab\{\par
+\tab\tab\tab\tab\tab  clrscr();\par
+\tab\tab printf("%d-%d-%d\par
+",month,day,year);\par
+\tab\tab menu();\par
+\tab\tab printf("You are born on the month of MARCH.\par
+");\par
+\tab\tab printf("Your BirthStone is AQUAMARINE or BLOODSTONE.\par
+");\par
+\tab\tab printf("You are an ARIES.");\par
+\tab\tab\}\par
+\tab else\par
+\tab\tab\{printf("Enter Correct Day!!!!!!");\par
+\tab\tab goto back2;\}\par
+\tab\}\par
+\par
+else if (month==4)\par
+\tab\{\par
+\tab back3:\par
+\tab printf("\par
+Enter Day (1-30):");\par
+\tab scanf("%d",&day);\par
+\tab if (day<=19)\par
+\tab\tab\{\par
+\tab\tab\tab\tab\tab  clrscr();\par
+\tab\tab printf("%d-%d-%d\par
+",month,day,year);\par
+\tab\tab menu();\par
+\tab\tab printf("You are born on the month of APRIL.\par
+");\par
+\tab\tab printf("Your BirthStone is DIAMOND.\par
+");\par
+\tab\tab printf("You are an ARIES.");\par
+\tab\tab\}\par
+\tab else if (day>19&&day<=30)\par
+\tab\tab\{\par
+\tab\tab\tab\tab\tab  clrscr();\par
+\tab\tab printf("%d-%d-%d\par
+",month,day,year);\par
+\tab\tab menu();\par
+\tab\tab printf("You are born on the month of APRIL.\par
+");\par
+\tab\tab printf("Your BirthStone is DIAMOND.\par
+");\par
+\tab\tab printf("You are a TAURUS.");\par
+\tab\tab\}\par
+\tab else\par
+\tab\tab\{printf("Enter Correct Day!!!!!!");\par
+\tab\tab goto back3;\}\par
+\tab\}\par
+\par
+else if (month==5)\par
+\tab\{\par
+\tab back4:\par
+\tab printf("\par
+Enter Day (1-31):");\par
+\tab scanf("%d",&day);\par
+\tab if (day<=20)\par
+\tab\tab\{\par
+\tab\tab\tab\tab\tab  clrscr();\par
+\tab\tab printf("%d-%d-%d\par
+",month,day,year);\par
+\tab\tab menu();\par
+\tab\tab printf("You are born on the month of MAY.\par
+");\par
+\tab\tab printf("Your BirthStone is EMERALD.\par
+");\par
+\tab\tab printf("You are a TAURUS.");\par
+\tab\tab\}\par
+\tab else if (day>20&&day<=31)\par
+\tab\tab\{\par
+\tab\tab\tab\tab\tab  clrscr();\par
+\tab\tab printf("%d-%d-%d\par
+",month,day,year);\par
+\tab\tab menu();\par
+\tab\tab printf("You are born on the month of MAY.\par
+");\par
+\tab\tab printf("Your BirthStone is EMERALD.\par
+");\par
+\tab\tab printf("You are a GEMINI.");\par
+\tab\tab\}\par
+\tab else\par
+\tab\tab\{printf("Enter Correct Day!!!!!!");\par
+\tab\tab goto back4;\}\par
+\tab\}\par
+\par
+else if (month==6)\par
+\tab\{\par
+\tab back5:\par
+\tab printf("\par
+Enter Day (1-30):");\par
+\tab scanf("%d",&day);\par
+\tab if (day<=20)\par
+\tab\tab\{\par
+\tab\tab\tab\tab\tab  clrscr();\par
+\tab\tab printf("%d-%d-%d\par
+",month,day,year);\par
+\tab\tab menu();\par
+\tab\tab printf("You are born on the month of JUNE.\par
+");\par
+\tab\tab printf("Your BirthStone is PEARL, ALEXANDRITE or MOONSTONE.\par
+");\par
+\tab\tab printf("You are a GEMINI.");\par
+\tab\tab\}\par
+\tab else if (day>20&&day<=30)\par
+\tab\tab\{\par
+\tab\tab\tab\tab\tab  clrscr();\par
+\tab\tab printf("%d-%d-%d\par
+",month,day,year);\par
+\tab\tab menu();\par
+\tab\tab printf("You are born on the month of JUNE.\par
+");\par
+\tab\tab printf("Your BirthStone is PEARL, ALEXANDRITE or MOONSTONE.\par
+");\par
+\tab\tab printf("You are a CANCER.");\par
+\tab\tab\}\par
+\tab else\par
+\tab\tab\{printf("Enter Correct Day!!!!!!");\par
+\tab\tab goto back5;\}\par
+\tab\}\par
+\par
+else if (month==7)\par
+\tab\{\par
+\tab back6:\par
+\tab printf("\par
+Enter Day (1-31):");\par
+\tab scanf("%d",&day);\par
+\tab if (day<=22)\par
+\tab\tab\{\par
+\tab\tab\tab\tab\tab  clrscr();\par
+\tab\tab printf("%d-%d-%d\par
+",month,day,year);\par
+\tab\tab menu();\par
+\tab\tab printf("You are born on the month of JULY.\par
+");\par
+\tab\tab printf("Your BirthStone is RUBY.\par
+");\par
+\tab\tab printf("You are a CANCER.");\par
+\tab\tab\}\par
+\tab else if (day>22&&day<=30)\par
+\tab\tab\{\par
+\tab\tab\tab\tab\tab  clrscr();\par
+\tab\tab printf("%d-%d-%d\par
+",month,day,year);\par
+\tab\tab menu();\par
+\tab\tab printf("You are born on the month of JULY.\par
+");\par
+\tab\tab printf("Your BirthStone is RUBY.\par
+");\par
+\tab\tab printf("You are a LEO.");\par
+\tab\tab\}\par
+\tab else\par
+\tab\tab\{printf("Enter Correct Day!!!!!!");\par
+\tab\tab goto back6;\}\par
+\tab\}\par
+\par
+else if (month==8)\par
+\tab\{\par
+\tab back7:\par
+\tab printf("\par
+Enter Day (1-31):");\par
+\tab scanf("%d",&day);\par
+\tab if (day<=22)\par
+\tab\tab\{\par
+\tab\tab\tab\tab\tab  clrscr();\par
+\tab\tab printf("%d-%d-%d\par
+",month,day,year);\par
+\tab\tab menu();\par
+\tab\tab printf("You are born on the month of AUGUST.\par
+");\par
+\tab\tab printf("Your BirthStone is PERIDOT or SARDONYX.\par
+");\par
+\tab\tab printf("You are a LEO.");\par
+\tab\tab\}\par
+\tab else if (day>22&&day<=31)\par
+\tab\tab\{\par
+                clrscr();\par
+\tab\tab printf("%d-%d-%d\par
+",month,day,year);\par
+\tab\tab menu();\par
+\tab\tab printf("You are born on the month of AUGUST.\par
+");\par
+\tab\tab printf("Your BirthStone is PERIDOT or SARDONYX.\par
+");\par
+\tab\tab printf("You are a VIRGO.");\par
+\tab\tab\}\par
+\tab else\par
+\tab\tab\{printf("Enter Correct Day!!!!!!");\par
+\tab\tab goto back7;\}\par
+\tab\}\par
+\par
+else if (month==9)\par
+\tab\{\par
+\tab back8:\par
+\tab printf("\par
+Enter Day (1-30):");\par
+\tab scanf("%d",&day);\par
+\tab if (day<=22)\par
+\tab\tab\{\par
+                clrscr();\par
+\tab\tab printf("%d-%d-%d\par
+",month,day,year);\par
+\tab\tab menu();\par
+\tab\tab printf("You are born on the month of SEPTEMBER.\par
+");\par
+\tab\tab printf("Your BirthStone is SAPPHIRE.\par
+");\par
+\tab\tab printf("You are a VIRGO.");\par
+\tab\tab\}\par
+\tab else if (day>22&&day<=30)\par
+\tab\tab\{\par
+                clrscr();\par
+\tab\tab printf("%d-%d-%d\par
+",month,day,year);\par
+\tab\tab menu();\par
+\tab\tab printf("You are born on the month of SEPTEMBER.\par
+");\par
+\tab\tab printf("Your BirthStone is SAPPHIRE.\par
+");\par
+\tab\tab printf("You are a LIBRA.");\par
+\tab\tab\}\par
+\tab else\par
+\tab\tab\{printf("Enter Correct Day!!!!!!");\par
+\tab\tab goto back8;\}\par
+\tab\}\par
+\par
+else if (month==10)\par
+\tab\{\par
+\tab back9:\par
+\tab printf("\par
+Enter Day (1-31):");\par
+\tab scanf("%d",&day);\par
+\tab if (day<=22)\par
+\tab\tab\{\par
+                clrscr();\par
+\tab\tab printf("%d-%d-%d\par
+",month,day,year);\par
+\tab\tab menu();\par
+\tab\tab printf("You are born on the month of OCTOBER.\par
+");\par
+\tab\tab printf("Your BirthStone is OPAL or TOURMALINE.\par
+");\par
+\tab\tab printf("You are a LIBRA.");\par
+\tab\tab\}\par
+\tab else if (day>22&&day<=31)\par
+\tab\tab\{\par
+                clrscr();\par
+\tab\tab printf("%d-%d-%d\par
+",month,day,year);\par
+\tab\tab menu();\par
+\tab\tab printf("You are born on the month of OCTOBER.\par
+");\par
+\tab\tab printf("Your BirthStone is OPAL or TOURMALINE.\par
+");\par
+\tab\tab printf("You are a SCORPIO.");\par
+\tab\tab\}\par
+\tab else\par
+\tab\tab\{printf("Enter Correct Day!!!!!!");\par
+\tab\tab goto back9;\}\par
+\tab\}\par
+\par
+else if (month==11)\par
+\tab\{\par
+\tab back10:\par
+\tab printf("\par
+Enter Day (1-30):");\par
+\tab scanf("%d",&day);\par
+\tab if (day<=21)\par
+\tab\tab\{\par
+                clrscr();\par
+\tab\tab printf("%d-%d-%d\par
+",month,day,year);\par
+\tab\tab menu();\par
+\tab\tab printf("You are born on the month of NOVEMBER.\par
+");\par
+\tab\tab printf("Your BirthStone is TOPAZ.\par
+");\par
+\tab\tab printf("You are a SCORPIO.");\par
+\tab\tab\}\par
+\tab else if (day>21&&day<=30)\par
+\tab\tab\{\par
+                clrscr();\par
+\tab\tab printf("%d-%d-%d\par
+",month,day,year);\par
+\tab\tab menu();\par
+\tab\tab printf("You are born on the month of NOVEMBER.\par
+");\par
+\tab\tab printf("Your BirthStone is TOPAZ.\par
+");\par
+\tab\tab printf("You are a SAGITARIUS.");\par
+\tab\tab\}\par
+\tab else\par
+\tab\tab\{printf("Enter Correct Day!!!!!!");\par
+\tab\tab goto back10;\}\par
+\tab\}\par
+\par
+else if (month==12)\par
+\tab\{\par
+\tab back11:\par
+\tab printf("\par
+Enter Day (1-31):");\par
+\tab scanf("%d",&day);\par
+\tab if (day<=21)\par
+\tab\tab\{\par
+                clrscr();\par
+\tab\tab printf("%d-%d-%d\par
+",month,day,year);\par
+\tab\tab menu();\par
+\tab\tab printf("You are born on the month of DECEMBER.\par
+");\par
+\tab\tab printf("Your BirthStone is TURQUOISE OR ZIRCON.\par
+");\par
+\tab\tab printf("You are a SAGITARIUS.");\par
+\tab\tab\}\par
+\tab else if (day>21&&day<=31)\par
+\tab\tab\{\par
+                clrscr();\par
+\tab\tab printf("%d-%d-%d\par
+",month,day,year);\par
+\tab\tab menu();\par
+\tab\tab printf("You are born on the month of DECEMBER.\par
+");\par
+\tab\tab printf("Your BirthStone is TURQUOISE OR ZIRCON.\par
+");\par
+\tab\tab printf("\par
+You are a CAPRICORN.");\par
+\tab\tab\}\par
+\tab else\par
+\tab\tab\{printf("Enter Correct Day!!!!!!");\par
+\tab\tab goto back11;\}\par
+\tab\}\par
+else\par
+\tab\{printf("Enter Correct No.!!!!!!");\par
+\tab delay (99999999);\par
+\tab delay (99999999);\par
+\tab delay (99999999);\par
+\tab delay (99999999);\par
+\tab goto skip;\}\par
+getch();\par
+\}\par
+\par
+int menu()\par
+\{\par
+if (year==1992||year==1980||year==2004)\par
+\tab printf("You are born on the Year of the MONKEY.\par
+");\par
+else if (year==1993||year==1981||year==2005)\par
+\tab printf("You are born on the Year of the ROOSTER.\par
+");\par
+else if (year==1994||year==1982||year==1970)\par
+\tab printf("You are born on the Year of the DOG.\par
+");\par
+else if (year==1995||year==1971||year==1983)\par
+\tab printf("You are born on the Year of the BOAR.\par
+");\par
+else if (year==1996||year==1984||year==1972)\par
+\tab printf("You are born on the Year of the RAT.\par
+");\par
+else if (year==1997||year==1985||year==1973)\par
+\tab printf("You are born on the Year of the OX.\par
+");\par
+else if (year==1998||year==1986||year==1974)\par
+\tab printf("You are born on the Year of the TIGER.\par
+");\par
+else if (year==1975||year==1999||year==1987)\par
+\tab printf("You are born on the Year of the RABBIT.\par
+");\par
+else if (year==1976||year==2000||year==1988)\par
+\tab printf("You are born on the Year of the DRAGON.\par
+");\par
+else if (year==1977||year==2001||year==1989)\par
+\tab printf("You are born on the Year of the SNAKE.\par
+");\par
+else if (year==2002||year==1978||year==1990)\par
+\tab printf("You are born on the Year of the HORSE.\par
+");\par
+else if (year==2003||year==1979||year==1991)\par
+\tab printf("You are born on the Year of the RAM.\par
+");\par
+return;\par
+\}\par
+\par
+}
+ 

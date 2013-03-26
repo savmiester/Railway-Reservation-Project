@@ -1,0 +1,271 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fswiss\fcharset0 Arial;}{\f1\froman\fcharset0 Times New Roman;}}
+{\*\generator Msftedit 5.41.21.2508;}\viewkind4\uc1\pard\f0\fs20\par
+\pard\sb100\sa100\f1\fs24 A Departmental Store Program.\par
+\pard\f0\fs20\par
+\par
+#include<iostream.h>\par
+#include<graphics.h>\par
+#include<dos.h>\par
+#include<ctype.h>\par
+#include<string.h>\par
+#include<fstream.h>\par
+#include<stdio.h>\par
+#include<conio.h>\par
+#include<stdlib.h>\par
+#include<iomanip.h>\par
+#define BACK 8\par
+#define ENTER 13\par
+char pass[10]="pawan";\par
+class market\par
+\{\par
+                private:\par
+                                  int ss;\par
+                                  char checkername[30];\par
+                                  struct goods\par
+                                  \{\par
+                                                  int no;\par
+                                                  char name[30];\par
+                                                  float quantity;\par
+                                                  float cost_per_unit;\par
+                                  \}good,temp;\par
+\par
+                                  struct customer\par
+                                  \{\par
+                                                  char name[30];\par
+                                                  char add[30];\par
+                                                  char telno[30];\par
+                                                  char purchase[30];\par
+                                                  int day;\par
+                                                  int mont;\par
+                                                  int saal;\par
+                                                  float quan;\par
+                                                  float rate;\par
+                                                  float pay;\par
+                                                  float exp;\par
+                                                  float profit;\par
+                                  \}cus;\par
+\par
+                public:\par
+\par
+                                                  int today;\par
+                                                  int month;\par
+                                                  int year;\par
+                                                  int counter();\par
+                                                  void ent_good();\par
+                                                  void sell();\par
+                                                  void update_inventory();\par
+                                                  void see_inventory();\par
+                                                  void see_product();\par
+                                                  void see_customer();\par
+                                                  void update();\par
+                                                  void bill(customer s);\par
+                                                  void graph();\par
+                                                  int checker();\par
+                                                  void expenditure();\par
+                                                  void password();\par
+                                                  void date();\par
+                                                  void time();\par
+                                                  void frontpage();\par
+                                                  //void cat();\par
+\};\par
+\par
+void market::date()\par
+\{\par
+                struct date d;\par
+                getdate(&d);\par
+                gotoxy(58,7);\par
+                printf("DATE: %d/%d/%d",d.da_mon,d.da_day,d.da_year);\par
+                today=d.da_day;\par
+                month=d.da_mon;\par
+                year=d.da_year;\par
+\}\par
+void market::frontpage()\par
+\{\par
+                int gd=DETECT,gm;\par
+                initgraph(&gd,&gm,"D:\\backups\\borlandc\\bgi");\par
+                clrscr();\par
+                clearviewport();\par
+                setbkcolor(BLACK);\par
+                setcolor(9);\par
+                setfillstyle(SOLID_FILL,1);\par
+                floodfill(486,71,6);\par
+                rectangle(470,259,630,400);\par
+                settextstyle(2,HORIZ_DIR,5);\par
+                setcolor(11);\par
+                outtextxy(503,270,"A PROJECT ON ");\par
+                outtextxy(489,280,"DEPARTMENTAL STORE");\par
+                outtextxy(505,360+8,". PAWAN REGMI");\par
+                setcolor(9);\par
+                line(470,293,630,293);\par
+                line(10,400,10,150);\par
+                line(10,400,140,450);\par
+                line(10,150,140,108);\par
+                line(489,293,489,400);\par
+                setfillstyle(HATCH_FILL,9);\par
+                fillellipse(320,30,320,30);\par
+                setfillstyle(CLOSE_DOT_FILL,BLUE);\par
+                fillellipse(190,280,140,183);\par
+                settextstyle(3,HORIZ_DIR,4);\par
+                setcolor(YELLOW);\par
+                outtextxy(180,12,"THE MAIN MENU");\par
+                settextstyle(7,VERT_DIR,3);\par
+                outtextxy(20,180,"YOUR OPTIONS");\par
+                settextstyle(2,VERT_DIR,4);\par
+                outtextxy(475,301,"Created By:");\par
+                settextstyle(7,HORIZ_DIR,2);\par
+                setcolor(WHITE);\par
+                outtextxy(90,155+15," NTRY OF GOODS");\par
+                outtextxy(90,185+15," ELL GOODS");\par
+                outtextxy(90,215+15," IEW INVENTORY");\par
+                outtextxy(90,245+15," IND GOOD");\par
+                outtextxy(90,275+15," USTOMER DETAIL");\par
+                outtextxy(90,305+15," PDATE PRODUCT");\par
+                outtextxy(157,335+35,"E IT");\par
+                setcolor(YELLOW);\par
+                outtextxy(87,170,"E");\par
+                outtextxy(87,200,"S");\par
+                outtextxy(87,230,"V");\par
+                outtextxy(87,260,"F");\par
+                outtextxy(87,290,"C");\par
+                outtextxy(87,320,"U");\par
+                outtextxy(168,370,"X");\par
+\}\par
+void market::time()\par
+\{\par
+ struct dostime_t t;\par
+ _dos_gettime(&t);\par
+ printf("\tab\tab\tab\tab\tab\tab\tab  TIME: %2d:%02d:%02d.\par
+", t.hour,\par
+t.minute,t.second);\par
+\}\par
+\par
+\par
+int market::counter()\par
+\{\par
+                 int count=0;\par
+                 ifstream file;\par
+                 file.open("pasal.txt",ios::app|ios::in||ios::binary);\par
+                 file.seekg(0,ios::beg);\par
+                 while(file.read((char*)&good,sizeof(goods)))\par
+                                 count++;\par
+                                 file.close();\par
+                                 return count+1;\par
+\}\par
+\par
+int market::checker()\par
+\par
+\{\par
+                ifstream fil;\par
+                int st=0;\par
+                fil.open("pasal.txt",ios::app|ios::in|ios::binary);\par
+                fil.seekg(0,ios::beg);\par
+                while(fil.read((char*)&good,sizeof(goods)))\par
+                \{\par
+                                  if(stricmp(checkername,good.name)==0)\par
+                                  \{\par
+                                                   st=1;\par
+                                                   ss=good.no;\par
+                                                   break;\par
+                                  \}\par
+                \}\par
+                fil.close();\par
+                return st;\par
+\}\par
+\par
+void market::ent_good()\par
+\{\par
+\par
+                                 ofstream file;\par
+                                 int t_no;\par
+                                 char reply;\par
+                                 file.open("pasal.txt",ios::app|ios::out);\par
+                                 t_no=counter();\par
+                                 cout<<endl<<endl<<endl<<endl<<endl;//gotoxy(1,10);\par
+                                 closegraph();\par
+                                 //cin=getch();\par
+                                 cout<<"\par
+\par
+\tab\tab WE-4 DEPARTMENTAL STORE";\par
+                                 cout<<"\par
+\tab\tab\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4";\par
+                                 cout<<"\par
+\par
+\par
+\par
+\par
+\tab\tab ITEM NAME         : ";\par
+                                 gets(checkername);\par
+                                 int tk=checker();\par
+                                 if(tk==0)\par
+                                 \{\par
+                                                  strcpy(good.name,checkername);\par
+                                                  good.no=t_no;\par
+                                                  cout<<"\par
+\tab\tab QUANTITY          : ";\par
+                                                  cin>>good.quantity;\par
+                                                  cout<<"\par
+\tab\tab COST PER UNIT     : ";\par
+                                                  cin>>good.cost_per_unit;\par
+                                                  cout<<"\par
+\par
+\par
+\par
+\par
+\tab\tab\tab GOOD SUCCESSFULLY ENTERED";\par
+                                                  delay(1500);\par
+                                                  file.write((char*)&good,sizeof(goods));\par
+                                                  file.close();\par
+                                 \}\par
+                                 else\par
+                                 \{\par
+                                                  cout<<"\par
+\par
+\tab\tab The good "<<good.name<<" already exists in store\par
+\par
+\tab\tab You can update it ";\par
+                                                  cout<<"\par
+\par
+\par
+\tab\tab Do you want to update it (y/n): ";\par
+                                                  cin>>reply;\par
+                                                  cout<<endl<<endl<<" \tab\tab\tab Its product number is: "<<ss<<"   ";\par
+                                                  reply=toupper(reply);\par
+                                                  if(reply=='Y')\par
+                                                  \{\par
+                                                  cout<<"\par
+UPDATING";\par
+                                                  cout<<"\par
+\'c4\'c4\'c4\'c4\'c4\'c4\'c4\'c4";\par
+                                                  update();\par
+                                                  \}\par
+                                 \}\par
+\par
+\}\par
+void market::password()\par
+\{\par
+                char pp[20];\par
+                                 int i=0,tt=0;\par
+                                 //char as='Y';\par
+                                 for(int ppp=0;ppp<3;ppp++)\par
+                                 \{\par
+                                                  clrscr();\par
+                                                  gotoxy(12,3);\par
+                                                  cout<<"ENTER CURRENT PASSWORD: ";\par
+                                                  while((pp[i]=getch())!=ENTER)\par
+                                                  \{\par
+                                                                   if(pp[i]==BACK)\par
+                                                                   \{\par
+                                                                                     --i;\par
+                                                                                     gotoxy(40+i,3);\par
+                                                                                     cout<<" ";\par
+                                                                   \}\par
+                                                                   else\par
+                                                                   \{\par
+                                                                                     gotoxy(40+i,3);\par
+                                                                                     cout<<"*";\par
+                                                                                     i++;\par
+                                                                   \}\par
+                                   \}\par
+                                   pp[i]='\par
+}
+ 
